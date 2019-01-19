@@ -31,6 +31,9 @@ else {
 		include "modules/pakan/view2.php";
 	}
 
+	elseif ($_GET['module'] == 'pakanmasuk') {
+		include "modules/pakan/view3.php";
+	}
 	elseif ($_GET['module'] == 'form_pakan') {
 		include "modules/pakan/form.php";
 	}
