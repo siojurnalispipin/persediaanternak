@@ -136,6 +136,8 @@ if ($_SESSION['acces']=='Admin') { ?>
       		<ul class="treeview-menu">
         		<li class="active"><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
         		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Ternak Sakit </a></li>
+						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
+						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Ternak KeLuar </a></li>
       		</ul>
     	</li>
     <?php
@@ -149,6 +151,36 @@ if ($_SESSION['acces']=='Admin') { ?>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
         		<li class="active"><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Ternak Sakit </a></li>
+						<li><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
+						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak KeLuar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+	elseif ($_GET["module"]=="hewanmasuk") { ?>
+		<li class="active treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Ternak</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
+        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Ternak Sakit </a></li>
+						<li class="active"><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
+						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak KeLuar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+	elseif ($_GET["module"]=="hewankeluar") { ?>
+		<li class="active treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Ternak</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
+        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Ternak Sakit </a></li>
+						<li><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
+						<li class="active"><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak KeLuar </a></li>
       		</ul>
     	</li>
     <?php
@@ -162,6 +194,8 @@ if ($_SESSION['acces']=='Admin') { ?>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
         		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Ternak Sakit </a></li>
+						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
+						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak KeLuar </a></li>
       		</ul>
     	</li>
     <?php

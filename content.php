@@ -49,7 +49,12 @@ else {
 	elseif ($_GET['module'] == 'hewansakit') {
 		include "modules/hewan/view2.php";
 	}
-	
+	elseif ($_GET['module'] == 'hewanmasuk') {
+		include "modules/hewan/view3.php";
+	}
+	elseif ($_GET['module'] == 'hewankeluar') {
+		include "modules/hewan/view3.php";
+	}
 	elseif ($_GET['module'] == 'form_hewan') {
 		include "modules/hewan/form.php";
 	}

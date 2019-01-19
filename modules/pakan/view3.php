@@ -76,7 +76,7 @@
             require_once "config/database.php";     
 
 
-            $query = $mysqli->query("SELECT * FROM barang_masuk WHERE item_id>70000 ORDER BY transaction_id DESC");
+            $query = $mysqli->query("SELECT * FROM barang_masuk WHERE item_id<70000 ORDER BY transaction_id DESC");
             //$data = $query->fetch_assoc();
            
             // tampilkan data
