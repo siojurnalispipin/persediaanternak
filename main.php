@@ -100,7 +100,7 @@ session_start();
       
       <header class="main-header">
         <!-- Logo -->
-        <a href="?module=home2" class="logo">
+        <a href="?module=home" class="logo">
           <img style="margin-top:-15px;margin-right:5px" src="assets/img/logolaia2.png" alt="Logo"> 
         </a>
         <!-- Header Navbar: style can be found in header.less -->

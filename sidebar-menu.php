@@ -38,16 +38,16 @@ if ($_SESSION['acces']=='Admin') { ?>
 	<?php
 	}*/
 
-	if ($_GET["module"]=="home2") { ?>
+	if ($_GET["module"]=="home") { ?>
 		<li class="active">
-			<a href="?module=home2"><i class="fa fa-home"></i> Beranda </a>
+			<a href="?module=home"><i class="fa fa-home"></i> Beranda </a>
 	  	</li>
 	<?php
 	}
 	// jika tidak, menu home tidak aktif
 	else { ?>
 		<li>
-			<a href="?module=home2"><i class="fa fa-home"></i> Beranda </a>
+			<a href="?module=home"><i class="fa fa-home"></i> Beranda </a>
 	  	</li>
 	<?php
 	}
