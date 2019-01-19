@@ -49,7 +49,7 @@ if ($baris >0) {
 	$_SESSION['password']  = $password;
 		
 	// lalu alihkan ke halaman user
-	header("Location: main.php?module=home2");
+	header("Location: main.php?module=home");
 }
 
 	// jika data tidak ada, alihkan ke halaman login dan tampilkan pesan = 1
