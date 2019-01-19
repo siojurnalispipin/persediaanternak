@@ -18,7 +18,7 @@
     
     <div class="row">
       <div class="col-lg-12 col-xs-12" style="width:50%">
-      <h2 style="text-align: center" >Jumlah Pakan : <?php echo $hewan['jumlah'];?></h2>
+      <h2 style="text-align: center" >Jumlah Ternak : <?php echo $hewan['jumlah'];?></h2>
       </div>
       <div class="col-lg-12 col-xs-12" style="width:50%">
       <h2 style="text-align: center">Jumlah Pakan : <?php echo $pakan['jumlah'];?></h2>
