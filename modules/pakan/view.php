@@ -28,7 +28,7 @@
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4  style='color:black;'>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              <p style='color:black;'>Ternak baru berhasil disimpan.</p>
+              <p style='color:black;'>Pakan baru berhasil disimpan.</p>
             </div>";
     }
     // jika alert = 2
@@ -37,7 +37,7 @@
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4  style='color:black;'>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              <p style='color:black;'>Data ternak berhasil diubah.</p>
+              <p style='color:black;'>Data Pakan berhasil diubah.</p>
             </div>";
     }
     // jika alert = 3
@@ -46,7 +46,7 @@
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4  style='color:black;'>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              <p style='color:black;'>Data Ternak berhasil dihapus.</p>
+              <p style='color:black;'>Data Pakan berhasil dihapus.</p>
             </div>";
     }
     elseif ($_GET['alert'] == 4) {

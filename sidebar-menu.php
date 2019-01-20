@@ -106,7 +106,7 @@ if ($_SESSION['acces']=='Admin') { ?>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
         		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kedaluarsa </a></li>
-						<li><a href="?module=pakanmasuk"><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
+						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
 						<li  class="active"><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan KeLuar </a></li>
       		</ul>
     	</li>
