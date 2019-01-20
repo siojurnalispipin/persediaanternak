@@ -34,6 +34,9 @@ else {
 	elseif ($_GET['module'] == 'pakanmasuk') {
 		include "modules/pakan/view3.php";
 	}
+	elseif ($_GET['module'] == 'pakankeluar') {
+		include "modules/pakan/view4.php";
+	}
 	elseif ($_GET['module'] == 'form_pakan') {
 		include "modules/pakan/form.php";
 	}
@@ -53,7 +56,7 @@ else {
 		include "modules/hewan/view3.php";
 	}
 	elseif ($_GET['module'] == 'hewankeluar') {
-		include "modules/hewan/view3.php";
+		include "modules/hewan/view4.php";
 	}
 	elseif ($_GET['module'] == 'form_hewan') {
 		include "modules/hewan/form.php";

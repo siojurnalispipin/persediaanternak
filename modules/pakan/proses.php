@@ -18,20 +18,19 @@ else {
             $item_name  = trim($_POST['item_name']);
             $amount     = trim($_POST['amount']);
             $type       = trim($_POST['type']);
-            $price      = trim($_POST['price']);
+            $use_for    = trim($_POST['use_for']);
             $item_image = trim($_POST['item_image']);
 
             $created_user = $_SESSION['user_id'];
-            $query = mysqli_query($mysqli, "SELECT * FROM pakan WHERE item_name ='$item_name' AND type='$type'")
+            $query = mysqli_query($mysqli, "SELECT * FROM pakan WHERE item_name ='$item_name' AND type='$type' AND item_id != $item_id")
                                             or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));    
             if($query->num_rows > 0){
-                echo "<script type='text/javascript'>alert('Nama dan jenis pakan yang sama sudah terdaftar !');</script>";
                 header("location: ../../main.php?module=form_pakan&alert=1");
             }
             else{
                 // perintah query untuk menyimpan data ke tabel obat
-                $query = mysqli_query($mysqli, "INSERT INTO pakan(item_id,item_name,amount,type,price,item_image) 
-                                                VALUES('$item_id','$item_name','$amount','$type','$price','$item_image')")
+                $query = mysqli_query($mysqli, "INSERT INTO pakan(item_id,item_name,amount,type,use_for,item_image) 
+                                                VALUES('$item_id','$item_name','$amount','$type','$use_for','$item_image')")
                                                 or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));    
 
                 // cek query
@@ -43,51 +42,89 @@ else {
         }   
     }
      
-    elseif ($_GET['act']=='insertex') {
+    elseif ($_GET['act']=='insert2') {
         if (isset($_POST['simpan'])) {
             // ambil data hasil submit dari form
             $expired_id    = trim($_POST['expired_id']);
             $item_name  = trim($_POST['item_name']);
             $amount     = trim($_POST['amount']);
             $created_user = $_SESSION['user_id'];
+            $enough = false;
+                $query = $mysqli->query("SELECT * FROM pakan where item_name = '$item_name'");
+                $data = $query->fetch_assoc();
+                //cek apakah stok lebih besar dari jumlah item yang akan dikeluarkan
+                if((int)$data['amount'] >= $amount){
+                    $enough=true;
+                    $amount2 = (int)$data['amount'] - $amount; 
+                    $item_id = $data['item_id'];
+                    $item_name = $data['item_name'];
+                    $type = $data['type'];
+                    $price = $data['price'];
+                    $item_image = $data['item_image'];
+                    $query = mysqli_query($mysqli, "UPDATE pakan SET  item_id      = '$item_id',
+                                                                        item_name  = '$item_name',
+                                                                        amount     = '$amount2',
+                                                                        type       = '$type',
+                                                                        price      = '$price',
+                                                                        item_image = '$item_image'
+                                                            WHERE item_name      = '$item_name'")
+                            or die('Ada kesalahan pada query update : '.mysqli_error($mysqli));
 
-            $query = $mysqli->query("SELECT * from pakan where item_name='$item_name'");
-            $data = $query->fetch_assoc();
-            if((int)$data['amount'] >= $amount){
-                //buat kode transaksi keluar
-              $query = $mysqli->query("SELECT transaction_id from barang_keluar order by transaction_id desc limit 1");
-              $data = $query->fetch_assoc();
-              $lastid = $data['transaction_id'];
-              $lastid = (int)substr($lastid,1,5);
-              $count = $query->num_rows;
-              if ($count > 0) {
-                  $num = $lastid+1;
-              } else {
-                  $num = 10101;
-              }
-              $transaction_id = "K$num";
+
+
+                }
+                else{
+                    header("location: ../../main.php?module=barangkeluar&alert=4");
+                }
+                if($enough){
+                    $created_user = $_SESSION['user_id'];
+    
+                    // perintah query untuk menyimpan data ke tabel obat
+                    $query = mysqli_query($mysqli, "INSERT INTO barang_keluar(transaction_id,item_id,description,amount,tracked_by,misc)
+                                                    VALUES('$transaction_id','$item_id','$item_name','$amount','$tracked_by','$misc')")
+                                                    or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));    
+    
+                    // cek query
+                    if ($query) {
+                        // jika berhasil tampilkan pesan berhasil simpan data
+                        header("location: ../../main.php?module=barangkeluar&alert=1");
+                    }   
+                } 
+                    
+                    
+                    $query = $mysqli->query("SELECT transaction_id from barang_keluar order by transaction_id desc limit 1");
+                    $data = $query->fetch_assoc();
+                    $lastid = $data['transaction_id'];
+                    $lastid = (int)substr($lastid,1,5);
+                    $count = $query->num_rows;
+                    if ($count > 0) {
+                        $num = $lastid+1;
+                    } else {
+                        $num = 10101;
+                    }
+                    $transaction_id = "K$num";
                 
                 // perintah query untuk menyimpan data ke tabel obat
                 
                 $query = mysqli_query($mysqli, "INSERT INTO kedaluarsa(expired_id,item_name,amount) 
                                                 VALUES('$expired_id','$item_name','$amount')")
                                                 or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));
-                $amount2 = (int)$data['amount'] - $amount; 
-                $item_id = $data['item_id'];
-                $type = $data['type'];
-                $price = $data['price'];
+                $amount2    = (int)$data['amount'] - $amount; 
+                $item_id    = $data['item_id'];
+                $type       = $data['type'];
+                $use_for    = $data['use_for'];
                 $item_image = $data['item_image'];
                 $tracked_by = $_SESSION['acces'];
                 $query = mysqli_query($mysqli, "INSERT INTO barang_keluar(transaction_id,item_id,description,amount,tracked_by,misc)
                                                 VALUES('$transaction_id','$item_id','$item_name','$amount','$tracked_by','Kedaluarsa')")
                                                 or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));    
-               $query = mysqli_query($mysqli, "UPDATE pakan SET  item_id       = '$item_id',
-                                                                    item_name      = '$item_name',
+               $query = mysqli_query($mysqli, "UPDATE pakan SET  item_id        = '$item_id',
+                                                                    item_name   = '$item_name',
                                                                     amount      = '$amount2',
-                                                                    type          = '$type',
-                                                                    price = '$price',
-                                                                    item_image = '$item_image'
-                                                              WHERE item_name      = '$item_name'")
+                                                                    type        = '$type',
+                                                                    use_for     = '$use_for'
+                                                                    item_image  = '$item_image'
+                                                              WHERE item_name   = '$item_name'")
                                                 or die('Ada kesalahan pada query update : '.mysqli_error($mysqli));
 
                 // cek query
@@ -109,7 +146,7 @@ else {
                 $item_name  = trim($_POST['item_name']);
                 $amount     = trim($_POST['amount']);
                 $type       = trim($_POST['type']);
-                $price      = trim($_POST['price']);
+                $use_for    = trim($_POST['use_for']);
                 //ambil gambar backup
                 $uji = $_POST['item_image'];
                 if($uji=="" || $uji == null ){
@@ -119,7 +156,7 @@ else {
                     $item_image = trim($_POST['item_image']);
                 }
 
-                $query = mysqli_query($mysqli, "SELECT * FROM pakan WHERE item_name ='$item_name' AND type='$type'")
+                $query = mysqli_query($mysqli, "SELECT * FROM pakan WHERE (item_name ='$item_name' AND type='$type') AND item_id != $item_id")
                                             or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));    
                 if($query->num_rows > 0){
                     header("location: ../../main.php?module=daftarpakan&alert=5");
@@ -129,12 +166,12 @@ else {
 
                     // perintah query untuk mengubah data pada tabel obat
                     $query = mysqli_query($mysqli, "UPDATE pakan SET  item_id       = '$item_id',
-                                                                        item_name      = '$item_name',
+                                                                        item_name   = '$item_name',
                                                                         amount      = '$amount',
-                                                                        type          = '$type',
-                                                                        price = '$price',
-                                                                        item_image = '$item_image'
-                                                                WHERE item_id      = '$item_id'")
+                                                                        type        = '$type',
+                                                                        use_for     = '$use_for',
+                                                                        item_image  = '$item_image'
+                                                                WHERE item_id       = '$item_id'")
                                                     or die('Ada kesalahan pada query update : '.mysqli_error($mysqli));
 
                     // cek query
@@ -163,7 +200,7 @@ else {
         }
     }     
 
-    elseif ($_GET['act']=='deleteex') {
+    elseif ($_GET['act']=='delete2') {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
     
@@ -177,6 +214,39 @@ else {
                 header("location: ../../main.php?module=pakanrusak&alert=3");
             }
         }
-    }       
+    }    
+    
+    elseif ($_GET['act']=='delete3') {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+    
+            // perintah query untuk menghapus data pada tabel obat
+            $query = mysqli_query($mysqli, "DELETE FROM kedaluarsa WHERE expired_id='$id'")
+                                            or die('Ada kesalahan pada query delete : '.mysqli_error($mysqli));
+
+            // cek hasil query
+            if ($query) {
+                // jika berhasil tampilkan pesan berhasil delete data
+                header("location: ../../main.php?module=pakanmasuk&alert=3");
+            }
+        }
+    }    
+
+    elseif ($_GET['act']=='delete4') {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+    
+            // perintah query untuk menghapus data pada tabel obat
+            $query = mysqli_query($mysqli, "DELETE FROM kedaluarsa WHERE expired_id='$id'")
+                                            or die('Ada kesalahan pada query delete : '.mysqli_error($mysqli));
+
+            // cek hasil query
+            if ($query) {
+                // jika berhasil tampilkan pesan berhasil delete data
+                header("location: ../../main.php?module=pakankeluar&alert=3");
+            }
+        }
+    }    
+
 }       
 ?>

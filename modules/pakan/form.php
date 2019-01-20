@@ -89,7 +89,7 @@ if ($_GET['form']=='add') { ?>
               </div>
 
               <div class="form-group">
-                <label class="col-sm-2 control-label">Jenis</label>
+                <label class="col-sm-2 control-label">Kategori</label>
                 <div class="col-sm-5">
                   <select class="chosen-select" name="type" data-placeholder="-- Pilih --" autocomplete="off" required>
                     <option value="Pakan Kasar">Pakan Kasar</option>
@@ -102,12 +102,9 @@ if ($_GET['form']=='add') { ?>
               </div>
 
               <div class="form-group">
-                <label class="col-sm-2 control-label">Harga</label>
+                <label class="col-sm-2 control-label">Ditujukan</label>
                 <div class="col-sm-5">
-                  <div class="input-group">
-                    <span class="input-group-addon">Rp.</span>
-                    <input type="text" class="form-control" id="price" name="price" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" required>
-                  </div>
+                  <input type="text" class="form-control" name="use_for" value="" autocomplete="off" >
                 </div>
               </div>
  
@@ -128,7 +125,7 @@ if ($_GET['form']=='add') { ?>
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <input type="submit" class="btn btn-primary btn-submit" name="simpan" value="Simpan">
-                  <a href="?module=pakan" class="btn btn-default btn-reset">Batal</a>
+                  <a href="?module=form_pakan&form=add" class="btn btn-default btn-reset">Batal</a>
                 </div>
               </div>
             </div><!-- /.box footer -->
@@ -160,7 +157,7 @@ elseif ($_GET['form']=='add2') { ?>
       <div class="col-md-12">
         <div class="box box-primary">
           <!-- form start -->
-          <form role="form" class="form-horizontal" action="modules/pakan/proses.php?act=insertex" method="POST">
+          <form role="form" class="form-horizontal" action="modules/pakan/proses.php?act=insert2" method="POST">
             <div class="box-body">
               <?php  
               // fungsi untuk membuat id transaksi
@@ -198,7 +195,7 @@ elseif ($_GET['form']=='add2') { ?>
               </div>
 
               <div class="form-group">
-                <label class="col-sm-2 control-label">Nama Barang</label>
+                <label class="col-sm-2 control-label">Nama Pakan</label>
                 <div class="col-sm-5">
                   <select class="chosen-select" name="item_name" data-placeholder="-- Pilih --" autocomplete="off" required>
                     <?php     
@@ -240,8 +237,232 @@ elseif ($_GET['form']=='add2') { ?>
   </section><!-- /.content -->
 <?php
 }
-// jika form edit data yang dipilih
-// isset : cek data ada / tidak
+
+//Form Tambah Pakan masuk
+elseif ($_GET['form']=='add3') { ?> 
+  <!-- tampilan form add data -->
+	<!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      <i class="fa fa-edit icon-title"></i>Tambah Pakan Masuk
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="?module=home"><i class="fa fa-home"></i> Beranda </a></li>
+      <li><a href="?module=pakangmasuk"> Pakan Masuk </a></li>
+      <li class="active"> Tambah </li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <!-- form start -->
+          <form role="form" class="form-horizontal" action="modules/pakan/proses.php?act=insert3" method="POST">
+            <div class="box-body">
+              <?php  
+              // fungsi untuk membuat id transaksi
+              require_once "config/database.php";
+              $user_id = $_SESSION['user_id'];
+              $query = $mysqli->query("SELECT transaction_id from barang_masuk order by transaction_id desc limit 1");
+              $query2 = $mysqli->query("SELECT * from pakan");
+              $data = $query->fetch_assoc();
+              $lastid = $data['transaction_id'];
+              $lastid = substr($lastid,1,5);
+              $count = $query->num_rows;
+
+              if ($count > 0) {
+                  $num = $lastid+1;
+              } else {
+                  $num = 10101;
+              }
+              $kode = "M$num";
+             
+              ?>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Kode Transaksi</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="transaction_id" value="<?php echo $kode; ?>" readonly required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Nama Pakan</label>
+                <div class="col-sm-5">
+                  <select class="chosen-select" name="item_id" data-placeholder="-- Pilih --" autocomplete="off" required>
+                    <?php     
+                    while($datapakan = $query2->fetch_assoc()){
+                      $item_name = $datapakan['item_name'];
+                      $item_id = $datapakan['item_id'];
+                      echo "<option value='$item_id'>$item_name</option>";
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Jumlah</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="amount" autocomplete="off" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Diketahui</label>
+                <div class="col-sm-5">
+                  <div class="input-group">
+                    <input type="text" class="form-control"  name="tracked_by" value="<?php echo $_SESSION['acces']; ?>" readonly required >
+                  </div>
+                </div>
+              </div>
+ 
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Keterangan</label>
+                <div class="col-sm-5">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="misc" name="misc" autocomplete="off" >
+                  </div>
+                </div>
+              </div>           
+
+            </div>
+
+              
+
+            </div><!-- /.box body -->
+
+            <div class="box-footer">
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <input type="submit" class="btn btn-primary btn-submit" name="simpan" value="Simpan">
+                  <a href="?module=pakanmasuk" class="btn btn-default btn-reset">Batal</a>
+                </div>
+              </div>
+            </div><!-- /.box footer -->
+          </form>
+          <!-- Form end -->
+        </div><!-- /.box -->
+      </div><!--/.col -->
+    </div>   <!-- /.row -->
+  </section><!-- /.content -->
+<?php
+}
+
+//Form Tambah Pakan Keluar
+elseif ($_GET['form']=='add4') { ?> 
+  <section class="content-header">
+    <h1>
+      <i class="fa fa-edit icon-title"></i>Tambah Pakan Keluar
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="?module=home"><i class="fa fa-home"></i> Beranda </a></li>
+      <li><a href="?module=pakankeluar"> Pakan Keluar </a></li>
+      <li class="active"> Tambah </li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <!-- form start -->
+          <form role="form" class="form-horizontal" action="modules/pakan/proses.php?act=insert4" method="POST">
+            <div class="box-body">
+              <?php  
+              // fungsi untuk membuat id transaksi
+              require_once "config/database.php";
+              $user_id = $_SESSION['user_id'];
+              $query = $mysqli->query("SELECT transaction_id from barang_masuk order by transaction_id desc limit 1");
+              $query2 = $mysqli->query("SELECT * from pakan");
+              $data = $query->fetch_assoc();
+              $lastid = $data['transaction_id'];
+              $lastid = substr($lastid,1,5);
+              $count = $query->num_rows;
+
+              if ($count > 0) {
+                  $num = $lastid+1;
+              } else {
+                  $num = 10101;
+              }
+              $kode = "M$num";
+             
+              ?>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Kode Transaksi</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="transaction_id" value="<?php echo $kode; ?>" readonly required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Nama Pakan</label>
+                <div class="col-sm-5">
+                  <select class="chosen-select" name="item_id" data-placeholder="-- Pilih --" autocomplete="off" required>
+                    <?php     
+                    while($datapakan = $query2->fetch_assoc()){
+                      $item_name = $datapakan['item_name'];
+                      $item_id = $datapakan['item_id'];
+                      echo "<option value='$item_id'>$item_name</option>";
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Jumlah</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="amount" autocomplete="off" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Diketahui</label>
+                <div class="col-sm-5">
+                  <div class="input-group">
+                    <input type="text" class="form-control"  name="tracked_by" value="<?php echo $_SESSION['acces']; ?>" readonly required >
+                  </div>
+                </div>
+              </div>
+ 
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Keterangan</label>
+                <div class="col-sm-5">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="misc" name="misc" autocomplete="off" >
+                  </div>
+                </div>
+              </div>           
+
+            </div>
+
+              
+
+            </div><!-- /.box body -->
+
+            <div class="box-footer">
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <input type="submit" class="btn btn-primary btn-submit" name="simpan" value="Simpan">
+                  <a href="?module=pakankeluar" class="btn btn-default btn-reset">Batal</a>
+                </div>
+              </div>
+            </div><!-- /.box footer -->
+          </form>
+          <!-- Form end -->
+        </div><!-- /.box -->
+      </div><!--/.col -->
+    </div>   <!-- /.row -->
+  </section><!-- /.content -->
+<?php
+}
+
+//Form Edit Pakan
 elseif ($_GET['form']=='edit') { 
   if (isset($_GET['id'])) {
       // fungsi query untuk menampilkan data dari tabel obat
@@ -295,9 +516,9 @@ elseif ($_GET['form']=='edit') {
               </div>
 
               <div class="form-group">
-                <label class="col-sm-2 control-label">Jenis</label>
+                <label class="col-sm-2 control-label">Kategori</label>
                 <div class="col-sm-5">
-                  <select class="chosen-select" name="type" data-placeholder="-- Pilih --" autocomplete="off" required>
+                  <select class="chosen-select" name="type" value="<?php echo $data['type']; ?>" data-placeholder="-- Pilih --" autocomplete="off" required>
                     <option value="Pakan Kasar">Pakan Kasar</option>
                     <option value="Pakan Penguat">Pakan Penguat</option>
                     <option value="Pakan Tambahan">Pakan Tambahan</option>
@@ -308,12 +529,9 @@ elseif ($_GET['form']=='edit') {
               </div>
 
               <div class="form-group">
-                <label class="col-sm-2 control-label">Harga</label>
+                <label class="col-sm-2 control-label">Ditujukan</label>
                 <div class="col-sm-5">
-                  <div class="input-group">
-                    <span class="input-group-addon">Rp.</span>
-                    <input type="text" class="form-control" id="price" name="price" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" value="<?php echo $data['price']; ?>" required>
-                  </div>
+                  <input type="text" class="form-control" name="use_for" value="<?php echo $data['use_for']; ?>" autocomplete="off" required>
                 </div>
               </div>
  
@@ -354,6 +572,209 @@ elseif ($_GET['form']=='edit') {
               </div>
             </div><!-- /.box footer -->
           </form>
+        </div><!-- /.box -->
+      </div><!--/.col -->
+    </div>   <!-- /.row -->
+  </section><!-- /.content -->
+<?php
+}
+
+
+
+elseif ($_GET['form']=='edit3') { 
+  if (isset($_GET['id'])) {
+      // fungsi query untuk menampilkan data dari tabel obat
+      require_once "config/database.php";
+      $query = $mysqli->query("SELECT * from barang_masuk WHERE transaction_id='$_GET[id]'");
+      $data  = $query->fetch_assoc();
+    }
+?>
+  <!-- tampilan form edit data -->
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      <i class="fa fa-edit icon-title"></i> Ubah Pakan Masuk
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="?module=home"><i class="fa fa-home"></i> Beranda </a></li>
+      <li><a href="?module=pakanmasuk"> Pakan Masuk </a></li>
+      <li class="active"> Ubah </li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <!-- form start -->
+          <form role="form" class="form-horizontal" action="modules/pakanmasuk/proses.php?act=update" method="POST">
+            <div class="box-body">
+              <?php  
+              // fungsi untuk membuat id transaksi
+              require_once "config/database.php";
+              $user_id = $_SESSION['user_id'];              
+              $query2 = $mysqli->query("SELECT * from pakan");
+              ?>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Kode Transaksi</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="transaction_id" value="<?php echo $data['transaction_id']; ?>" readonly required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Nama Pakan</label>
+                <div class="col-sm-5">
+                  <select class="chosen-select" name="description" data-placeholder="-- Pilih --" autocomplete="off" required>
+                    <?php          
+                    while($datapakan = $query2->fetch_assoc()){
+                      $item = $datapakan['item_name'];
+                      echo "<option value='$item'>$item</option>";}
+                    ?>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Jumlah</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="amount" value="<?php echo $data['amount']; ?>" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Diketahui</label>
+                <div class="col-sm-5">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="tracked_by" name="tracked_by" autocomplete="off" value="<?php echo $data['tracked_by']; ?>" readonly required>
+                  </div>
+                </div>
+              </div>
+ 
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Keterangan</label>
+                <div class="col-sm-5">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="misc" name="misc" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" value="<?php echo $data['misc']; ?>" >
+                  </div>
+                </div>
+              </div>           
+
+            </div><!-- /.box body -->
+
+            <div class="box-footer">
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <input type="submit" class="btn btn-primary btn-submit" name="simpan" value="Simpan">
+                  <a href="?module=barangmasuk" class="btn btn-default btn-reset">Batal</a>
+                </div>
+              </div>
+            </div><!-- /.box footer -->
+          </form>
+          <!--Form End-->
+        </div><!-- /.box -->
+      </div><!--/.col -->
+    </div>   <!-- /.row -->
+  </section><!-- /.content -->
+<?php
+}
+
+elseif ($_GET['form']=='edit4') { 
+  if (isset($_GET['id'])) {
+      // fungsi query untuk menampilkan data dari tabel obat
+      require_once "config/database.php";
+      $query = $mysqli->query("SELECT * from barang_keluar WHERE transaction_id='$_GET[id]'");
+      $data  = $query->fetch_assoc();
+    }
+?>
+  <!-- tampilan form edit data -->
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      <i class="fa fa-edit icon-title"></i> Ubah Pakan Keluar
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="?module=home"><i class="fa fa-home"></i> Beranda </a></li>
+      <li><a href="?module=pakankeluar"> Pakan Keluar </a></li>
+      <li class="active"> Ubah </li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <!-- form start -->
+          <form role="form" class="form-horizontal" action="modules/pakan/proses.php?act=update4" method="POST">
+            <div class="box-body">
+              <?php  
+              // fungsi untuk membuat id transaksi
+              require_once "config/database.php";
+              $user_id = $_SESSION['user_id'];              
+              $query2 = $mysqli->query("SELECT * from pakan");
+              ?>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Kode Transaksi</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="transaction_id" value="<?php echo $data['transaction_id']; ?>" readonly required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Nama Pakan</label>
+                <div class="col-sm-5">
+                  <select class="chosen-select" name="description" data-placeholder="-- Pilih --" autocomplete="off" required>
+                    <?php          
+                    while($datapakan = $query2->fetch_assoc()){
+                      $item = $datapakan['item_name'];
+                      echo "<option value='$item'>$item</option>";
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Jumlah</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="amount" value="<?php echo $data['amount']; ?>" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Diketahui</label>
+                <div class="col-sm-5">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="tracked_by" name="tracked_by" autocomplete="off" value="<?php echo $data['tracked_by']; ?>" readonly required>
+                  </div>
+                </div>
+              </div>
+ 
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Keterangan</label>
+                <div class="col-sm-5">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="misc" name="misc" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" value="<?php echo $data['misc']; ?>" >
+                  </div>
+                </div>
+              </div>           
+
+            </div><!-- /.box body -->
+
+            <div class="box-footer">
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <input type="submit" class="btn btn-primary btn-submit" name="simpan" value="Simpan">
+                  <a href="?module=barangkeluar" class="btn btn-default btn-reset">Batal</a>
+                </div>
+              </div>
+            </div><!-- /.box footer -->
+          </form>
+          <!--Form End-->
         </div><!-- /.box -->
       </div><!--/.col -->
     </div>   <!-- /.row -->

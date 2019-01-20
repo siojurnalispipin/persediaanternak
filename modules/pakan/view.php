@@ -80,8 +80,8 @@
                 <th class="center">Kode Pakan</th>
                 <th class="center">Nama Pakan</th>
                 <th class="center">Stok</th>
-                <th class="center">Jenis</th>
-                <th class="center">Harga</th>
+                <th class="center">Kategori</th>
+                <th class="center">Ditujukan</th>
                 <th class="center">Gambar</th>
                 <th></th>
               </tr>
@@ -100,7 +100,6 @@
            
             // tampilkan data
             while ($data = $query->fetch_assoc()) { 
-              $harga = format_rupiah($data['price']);
               // menampilkan isi tabel dari database ke tabel di aplikasi
               echo "<tr>
                       <td width='30' class='center'>$no</td>
@@ -108,7 +107,7 @@
                       <td width='180' class='center'>$data[item_name]</td>                      
                       <td width='80' class='center'>$data[amount]</td>
                       <td width='80' class='center'>$data[type]</td>
-                      <td width='100' class='center'>Rp. $harga</td>
+                      <td width='80' class='center'>$data[use_for]</td>
                       <td width='50' class='center'><img src='images/item/$data[item_image]' width='50' height='50'></td>
                       <td class='center' width='80'>
                         <div>
