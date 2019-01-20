@@ -49,6 +49,25 @@
               Data Barang Masuk berhasil dihapus.
             </div>";
     }
+    // jika alert = 4
+    // tampilkan pesan Sukses "Data masuk berhasil dihapus"
+    elseif ($_GET['alert'] == 4) {
+      echo "<div class='alert alert-danger alert-dismissable'>
+              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+              <h4>  <i class='icon fa fa-close'></i> Gagal!</h4>
+              Jumlah Pakan masuk yang dimasukkan melebihi Stok.
+            </div>";
+    }
+    // jika alert = 5
+    // tampilkan pesan Sukses "Data keluar berhasil dihapus"
+    elseif ($_GET['alert'] == 5) {
+      echo "<div class='alert alert-danger alert-dismissable'>
+              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+              <h4>  <i class='icon fa fa-close'></i> Gagal!</h4>
+              <p>Perubahan Data Pakan Masuk Gagal.</p>
+              <p>Jumlah Perubahan melebihi Stok.</p>
+            </div>";
+    }
     ?>
 
       <div class="box box-primary">

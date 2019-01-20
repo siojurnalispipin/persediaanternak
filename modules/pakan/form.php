@@ -585,8 +585,14 @@ elseif ($_GET['form']=='edit3') {
   if (isset($_GET['id'])) {
       // fungsi query untuk menampilkan data dari tabel obat
       require_once "config/database.php";
-      $query = $mysqli->query("SELECT * from barang_masuk WHERE transaction_id='$_GET[id]'");
-      $data  = $query->fetch_assoc();
+      $transaction_id = $_GET['id'];
+      $query        = $mysqli->query("SELECT * from barang_masuk WHERE transaction_id='$transaction_id'");
+      $data         = $query->fetch_assoc();
+      $item_id      = $data['item_id'];
+      $description  = $data['description'];
+      $amount       = $data['amount'];
+      $tracked_by   = $data['tracked_by'];
+      $misc         = $data['misc'];
     }
 ?>
   <!-- tampilan form edit data -->
@@ -608,7 +614,7 @@ elseif ($_GET['form']=='edit3') {
       <div class="col-md-12">
         <div class="box box-primary">
           <!-- form start -->
-          <form role="form" class="form-horizontal" action="modules/pakanmasuk/proses.php?act=update" method="POST">
+          <form role="form" class="form-horizontal" action="modules/pakan/proses.php?act=update3" method="POST">
             <div class="box-body">
               <?php  
               // fungsi untuk membuat id transaksi
@@ -620,14 +626,14 @@ elseif ($_GET['form']=='edit3') {
               <div class="form-group">
                 <label class="col-sm-2 control-label">Kode Transaksi</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="transaction_id" value="<?php echo $data['transaction_id']; ?>" readonly required>
+                  <input type="text" class="form-control" name="transaction_id" value="<?php echo $transaction_id; ?>" readonly required>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-sm-2 control-label">Nama Pakan</label>
                 <div class="col-sm-5">
-                  <select class="chosen-select" name="description" data-placeholder="-- Pilih --" autocomplete="off" required>
+                  <select class="chosen-select" name="description" value="<?php echo $description; ?>" data-placeholder="-- Pilih --" autocomplete="off" required>
                     <?php          
                     while($datapakan = $query2->fetch_assoc()){
                       $item = $datapakan['item_name'];
@@ -640,7 +646,7 @@ elseif ($_GET['form']=='edit3') {
               <div class="form-group">
                 <label class="col-sm-2 control-label">Jumlah</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="amount" value="<?php echo $data['amount']; ?>" required>
+                  <input type="text" class="form-control" name="amount" value="<?php echo $amount ; ?>" required>
                 </div>
               </div>
 
@@ -648,16 +654,16 @@ elseif ($_GET['form']=='edit3') {
                 <label class="col-sm-2 control-label">Diketahui</label>
                 <div class="col-sm-5">
                   <div class="input-group">
-                    <input type="text" class="form-control" id="tracked_by" name="tracked_by" autocomplete="off" value="<?php echo $data['tracked_by']; ?>" readonly required>
+                    <input type="text" class="form-control" id="tracked_by" name="tracked_by" value="<?php echo $tracked_by; ?>" autocomplete="off" value="<?php echo $data['tracked_by']; ?>" readonly required>
                   </div>
                 </div>
               </div>
  
               <div class="form-group">
-                <label class="col-sm-2 control-label">Keterangan</label>
+                <label class="col-sm-2 control-label">Penyedia</label>
                 <div class="col-sm-5">
                   <div class="input-group">
-                    <input type="text" class="form-control" id="misc" name="misc" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" value="<?php echo $data['misc']; ?>" >
+                    <input type="text" class="form-control" id="misc" name="misc" value="<?php echo $misc; ?>" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" value="<?php echo $data['misc']; ?>" >
                   </div>
                 </div>
               </div>           
@@ -668,7 +674,7 @@ elseif ($_GET['form']=='edit3') {
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <input type="submit" class="btn btn-primary btn-submit" name="simpan" value="Simpan">
-                  <a href="?module=barangmasuk" class="btn btn-default btn-reset">Batal</a>
+                  <a href="?module=pakanmasuk" class="btn btn-default btn-reset">Batal</a>
                 </div>
               </div>
             </div><!-- /.box footer -->
@@ -681,12 +687,19 @@ elseif ($_GET['form']=='edit3') {
 <?php
 }
 
+// Edit Pakan Keluar
 elseif ($_GET['form']=='edit4') { 
   if (isset($_GET['id'])) {
       // fungsi query untuk menampilkan data dari tabel obat
       require_once "config/database.php";
-      $query = $mysqli->query("SELECT * from barang_keluar WHERE transaction_id='$_GET[id]'");
-      $data  = $query->fetch_assoc();
+      $transaction_id = $_GET['id'];
+      $query        = $mysqli->query("SELECT * from barang_keluar WHERE transaction_id='$transaction_id'");
+      $data         = $query->fetch_assoc();
+      $item_id      = $data['item_id'];
+      $description  = $data['description'];
+      $amount       = $data['amount'];
+      $tracked_by   = $data['tracked_by'];
+      $misc         = $data['misc'];
     }
 ?>
   <!-- tampilan form edit data -->
@@ -720,19 +733,18 @@ elseif ($_GET['form']=='edit4') {
               <div class="form-group">
                 <label class="col-sm-2 control-label">Kode Transaksi</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="transaction_id" value="<?php echo $data['transaction_id']; ?>" readonly required>
+                  <input type="text" class="form-control" name="transaction_id" value="<?php echo $transaction_id; ?>" readonly required>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-sm-2 control-label">Nama Pakan</label>
                 <div class="col-sm-5">
-                  <select class="chosen-select" name="description" data-placeholder="-- Pilih --" autocomplete="off" required>
+                  <select class="chosen-select" name="description" value="<?php echo $description; ?>" data-placeholder="-- Pilih --" autocomplete="off" required>
                     <?php          
                     while($datapakan = $query2->fetch_assoc()){
                       $item = $datapakan['item_name'];
-                      echo "<option value='$item'>$item</option>";
-                    }
+                      echo "<option value='$item'>$item</option>";}
                     ?>
                   </select>
                 </div>
@@ -741,7 +753,7 @@ elseif ($_GET['form']=='edit4') {
               <div class="form-group">
                 <label class="col-sm-2 control-label">Jumlah</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="amount" value="<?php echo $data['amount']; ?>" required>
+                  <input type="text" class="form-control" name="amount" value="<?php echo $amount ; ?>" required>
                 </div>
               </div>
 
@@ -749,7 +761,7 @@ elseif ($_GET['form']=='edit4') {
                 <label class="col-sm-2 control-label">Diketahui</label>
                 <div class="col-sm-5">
                   <div class="input-group">
-                    <input type="text" class="form-control" id="tracked_by" name="tracked_by" autocomplete="off" value="<?php echo $data['tracked_by']; ?>" readonly required>
+                    <input type="text" class="form-control" id="tracked_by" name="tracked_by" value="<?php echo $tracked_by; ?>" autocomplete="off" value="<?php echo $data['tracked_by']; ?>" readonly required>
                   </div>
                 </div>
               </div>
@@ -758,7 +770,7 @@ elseif ($_GET['form']=='edit4') {
                 <label class="col-sm-2 control-label">Keterangan</label>
                 <div class="col-sm-5">
                   <div class="input-group">
-                    <input type="text" class="form-control" id="misc" name="misc" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" value="<?php echo $data['misc']; ?>" >
+                    <input type="text" class="form-control" id="misc" name="misc" value="<?php echo $misc; ?>" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" value="<?php echo $data['misc']; ?>" readonly >
                   </div>
                 </div>
               </div>           
@@ -769,7 +781,7 @@ elseif ($_GET['form']=='edit4') {
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <input type="submit" class="btn btn-primary btn-submit" name="simpan" value="Simpan">
-                  <a href="?module=barangkeluar" class="btn btn-default btn-reset">Batal</a>
+                  <a href="?module=pakankeluar" class="btn btn-default btn-reset">Batal</a>
                 </div>
               </div>
             </div><!-- /.box footer -->
@@ -781,4 +793,6 @@ elseif ($_GET['form']=='edit4') {
   </section><!-- /.content -->
 <?php
 }
+
+
 ?>

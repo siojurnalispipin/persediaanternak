@@ -23,7 +23,7 @@
       echo "";
     } 
     // jika alert = 1
-    // tampilkan pesan Sukses "Data masuk baru berhasil disimpan"
+    // tampilkan pesan Sukses "Data keluar baru berhasil disimpan"
     elseif ($_GET['alert'] == 1) {
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
@@ -32,7 +32,7 @@
             </div>";
     }
     // jika alert = 2
-    // tampilkan pesan Sukses "Data masuk berhasil diubah"
+    // tampilkan pesan Sukses "Data keluar berhasil diubah"
     elseif ($_GET['alert'] == 2) {
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
@@ -41,7 +41,7 @@
             </div>";
     }
     // jika alert = 3
-    // tampilkan pesan Sukses "Data masuk berhasil dihapus"
+    // tampilkan pesan Sukses "Data keluar berhasil dihapus"
     elseif ($_GET['alert'] == 3) {
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
@@ -49,7 +49,27 @@
               Data Pakan Keluar berhasil dihapus.
             </div>";
     }
+    // jika alert = 4
+    // tampilkan pesan Sukses "Data keluar berhasil dihapus"
+    elseif ($_GET['alert'] == 4) {
+      echo "<div class='alert alert-danger alert-dismissable'>
+              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+              <h4>  <i class='icon fa fa-close'></i> Gagal!</h4>
+              Jumlah Pakan Keluar yang dimasukkan melebihi Stok.
+            </div>";
+    }
+    // jika alert = 5
+    // tampilkan pesan Sukses "Data keluar berhasil dihapus"
+    elseif ($_GET['alert'] == 5) {
+      echo "<div class='alert alert-danger alert-dismissable'>
+              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+              <h4>  <i class='icon fa fa-close'></i> Gagal!</h4>
+              <p>Perubahan Data Pakan Keluar Gagal.</p>
+              <p>Jumlah Perubahan melebihi Stok.</p>
+            </div>";
+    }
     ?>
+    
 
       <div class="box box-primary">
         <div class="box-body">
@@ -101,7 +121,7 @@
                               <i style="color:#fff" class="glyphicon glyphicon-edit"></i>
                           </a>
      
-                          <a data-toggle="tooltip" data-placement="top" title="Hapus" class="btn btn-danger btn-sm" href="modules/pakan/proses.php?act=delete4&id=<?php echo $data['transaction_id'];?>&amount=<?php echo $data['amount'];?>&item_id=<?php echo $data['item_id'];?>" onclick="return confirm('Anda yakin ingin menghapus pakan <?php echo $data['transaction_id']; ?> ?');">
+                          <a data-toggle="tooltip" data-placement="top" title="Hapus" class="btn btn-danger btn-sm" href="modules/pakan/proses.php?act=delete4&id=<?php echo $data['transaction_id'];?>" onclick="return confirm('Anda yakin ingin menghapus pakan <?php echo $data['transaction_id']; ?> ?');">
                               <i style="color:#fff" class="glyphicon glyphicon-trash"></i>
                           </a>
 
