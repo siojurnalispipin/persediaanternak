@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2019 at 09:53 AM
+-- Generation Time: Jan 20, 2019 at 01:44 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -2404,7 +2404,8 @@ INSERT INTO `hewan` (`item_id`, `item_name`, `amount`, `type`, `price`, `item_im
 (70106, 'Kambing Anakan', 120, 'Bibit', 200000, 'kambing_small.png'),
 (70107, 'Kambing', 80, 'Pedaging', 450000, 'kambing_big.png'),
 (70108, 'Kerbau', 60, 'Pedaging', 1700000, 'kerbau.png'),
-(70109, 'Sapi', 40, 'Pedaging', 2100000, 'sapi.png');
+(70109, 'Sapi', 40, 'Pedaging', 2100000, 'sapi.png'),
+(70110, 'Lele 1kg', 20, 'Bibit', 10000, 'lele.png');
 
 -- --------------------------------------------------------
 
@@ -2646,7 +2647,7 @@ CREATE TABLE `pakan` (
   `item_name` varchar(50) CHARACTER SET ascii NOT NULL,
   `amount` int(11) NOT NULL,
   `type` varchar(20) NOT NULL,
-  `price` double NOT NULL,
+  `use_for` varchar(100) CHARACTER SET ascii NOT NULL,
   `item_image` varchar(100) CHARACTER SET ascii NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -2654,19 +2655,20 @@ CREATE TABLE `pakan` (
 -- Dumping data for table `pakan`
 --
 
-INSERT INTO `pakan` (`item_id`, `item_name`, `amount`, `type`, `price`, `item_image`) VALUES
-(40101, 'GA-102 Pellet 50kg', 120, 'Pakan Kasar', 135000, 'gunafeed.png'),
-(40102, 'Comfeed Broiler-1 50kg', 169, 'Pakan Kasar', 145000, 'comfeed.png'),
-(40103, 'Makmurfeed Boiler 50kg', 115, 'Pakan Tambahan', 120000, 'makmurfeed.png'),
-(40104, 'Gemilang G-11 50kg', 90, 'Pakan Kasar', 105000, 'gemilang.png'),
-(40105, 'Promol12 150gr', 200, 'Pakan Penguat', 60000, 'promol.png'),
-(40106, 'Azolla Microphylla 1kg', 50, 'Pakan Tambahan', 43000, 'azolla.png'),
-(40107, 'GOLD SPECIAL BREEDING 520gr', 120, 'Pakan Kasar', 30000, 'lovebird.jpg'),
-(40108, 'Tangguh Probiotik 1ltr', 50, 'Pakan Fermentasi', 75000, 'tangguh.png'),
-(40109, 'Pelet Ikan 1kg', 200, 'Vitamin', 15000, 'pelet.png'),
-(40110, 'Pur Ayam Bravo 511 1kg', 100, 'Pakan Kasar', 15000, 'bravo.png'),
-(40111, 'Jagung Kristal', 100, 'Pakan Kasar', 20000, 'jagung.png'),
-(40112, 'Pur Ayam BR21E 1kg', 100, 'Vitamin', 15000, 'br21e.png');
+INSERT INTO `pakan` (`item_id`, `item_name`, `amount`, `type`, `use_for`, `item_image`) VALUES
+(40101, 'GA-102 Pellet 50kg', 120, 'Pakan Kasar', 'ayam', 'gunafeed.png'),
+(40102, 'Comfeed Broiler-1 50kg', 169, 'Pakan Kasar', 'ayam', 'comfeed.png'),
+(40103, 'Makmurfeed Boiler 50kg', 115, 'Pakan Tambahan', 'ayam', 'makmurfeed.png'),
+(40104, 'Gemilang G-11 50kg', 90, 'Pakan Kasar', 'angsa, angsa, bebek', 'gemilang.png'),
+(40105, 'Promol12 150gr', 200, 'Pakan Penguat', 'ayam', 'promol.png'),
+(40106, 'Azolla Microphylla 1kg', 50, 'Pakan Tambahan', 'kambing, kerbau, sapi', 'azolla.png'),
+(40107, 'GOLD SPECIAL BREEDING 520gr', 120, 'Pakan Kasar', 'lele', 'lovebird.jpg'),
+(40108, 'Tangguh Probiotik 1ltr', 50, 'Pakan Fermentasi', 'angsa, ayam, bebek', 'tangguh.png'),
+(40109, 'Pelet Ikan 1kg', 200, 'Vitamin', 'lele', 'pelet.png'),
+(40110, 'Pur Ayam Bravo 511 1kg', 100, 'Pakan Kasar', 'ayam', 'bravo.png'),
+(40111, 'Jagung Kristal', 100, 'Pakan Kasar', 'angsa, ayam, bebek', 'jagung.png'),
+(40112, 'Pur Ayam BR21E 1kg', 100, 'Vitamin', 'ayam', 'br21e.png'),
+(40113, 'Hipro-782', 20, 'Pakan Kasar', '', 'hipro.png');
 
 -- --------------------------------------------------------
 
@@ -2974,7 +2976,7 @@ ALTER TABLE `anggota`
 -- AUTO_INCREMENT for table `pakan`
 --
 ALTER TABLE `pakan`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40113;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40114;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
