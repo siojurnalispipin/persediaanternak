@@ -1,9 +1,9 @@
 
 <section class="content-header">
   <h1>
-    <i class="fa fa-folder-o icon-title"></i> Pakan Masuk
+    <i class="fa fa-folder-o icon-title"></i> Hewan Keluar
 
-    <a class="btn btn-primary btn-social pull-right" href="?module=form_pakan&form=add3" title="Tambah Data" data-toggle="tooltip">
+    <a class="btn btn-primary btn-social pull-right" href="?module=form_hewan&form=add4" title="Tambah Data" data-toggle="tooltip">
       <i class="fa fa-plus"></i> Tambah
     </a>
   </h1>
@@ -23,39 +23,39 @@
       echo "";
     } 
     // jika alert = 1
-    // tampilkan pesan Sukses "Data masuk baru berhasil disimpan"
+    // tampilkan pesan Sukses "Data keluar baru berhasil disimpan"
     elseif ($_GET['alert'] == 1) {
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              <p style='color:black;'>Data Barang Masuk baru berhasil disimpan.</p>
+              <p style='color:black;'>Data Hewan Keluar baru berhasil disimpan.</p>
             </div>";
     }
     // jika alert = 2
-    // tampilkan pesan Sukses "Data masuk berhasil diubah"
+    // tampilkan pesan Sukses "Data keluar berhasil diubah"
     elseif ($_GET['alert'] == 2) {
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              <p style='color:black;'>Data Barang Masuk berhasil diubah.</p>
+              <p style='color:black;'>Data Hewan Keluar berhasil diubah.</p>
             </div>";
     }
     // jika alert = 3
-    // tampilkan pesan Sukses "Data masuk berhasil dihapus"
+    // tampilkan pesan Sukses "Data keluar berhasil dihapus"
     elseif ($_GET['alert'] == 3) {
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              <p style='color:black;'>Data Barang Masuk berhasil dihapus.</p>
+              <p style='color:black;'>Data Hewan Keluar berhasil dihapus.</p>
             </div>";
     }
     // jika alert = 4
-    // tampilkan pesan Sukses "Data masuk berhasil dihapus"
+    // tampilkan pesan Sukses "Data keluar berhasil dihapus"
     elseif ($_GET['alert'] == 4) {
       echo "<div class='alert alert-danger alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-close'></i> Gagal!</h4>
-              <p style='color:black;'>Jumlah Pakan Masuk yang dimasukkan melebihi Stok.</p>
+              <p style='color:black;'>Jumlah Hewan Keluar yang dimasukkan melebihi Stok.</p>
             </div>";
     }
     // jika alert = 5
@@ -64,11 +64,12 @@
       echo "<div class='alert alert-danger alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-close'></i> Gagal!</h4>
-              <p style='color:black;'>Perubahan Data Pakan Masuk Gagal.</p>
+              <p style='color:black;'>Perubahan Data Hewan Keluar Gagal.</p>
               <p style='color:black;'>Jumlah Perubahan melebihi Stok.</p>
             </div>";
     }
     ?>
+    
 
       <div class="box box-primary">
         <div class="box-body">
@@ -79,7 +80,7 @@
               <tr>
                 <th class="center">No.</th>
                 <th class="center">Kode Transaksi</th>
-                <th class="center">Deskripsi</th>
+                <th class="center">Jenis Hewan</th>
                 <th class="center">Jumlah</th>
                 <th class="center">Diketahui</th>
                 <th class="center">Keterangan</th>
@@ -95,7 +96,7 @@
             require_once "config/database.php";     
 
 
-            $query = $mysqli->query("SELECT * FROM barang_masuk WHERE item_id<70000 ORDER BY transaction_id DESC");
+            $query = $mysqli->query("SELECT * FROM barang_keluar WHERE item_id>70000 ORDER BY transaction_id DESC");
             //$data = $query->fetch_assoc();
            
             // tampilkan data
@@ -116,13 +117,14 @@
                      
               if($_SESSION['acces']=="Admin"){
                  ?>
-
-                          <a data-toggle="tooltip" data-placement="top" title="Ubah" style="margin-right:5px" class="btn btn-primary btn-sm" href="?module=form_pakan&form=edit3&id=<?php echo $data['transaction_id'];?>">
+                          <a data-toggle="tooltip" data-placement="top" title="Ubah" style="margin-right:5px" class="btn btn-primary btn-sm" href="?module=form_hewan&form=edit4&id=<?php echo $data['transaction_id'];?>">
                               <i style="color:#fff" class="glyphicon glyphicon-edit"></i>
-                          </a>    
-                          <a data-toggle="tooltip" data-placement="top" title="Hapus" class="btn btn-danger btn-sm" href="modules/pakan/proses.php?act=delete3&id=<?php echo $data['transaction_id'];?>&amount=<?php echo $data['amount'];?>&item_id=<?php echo $data['item_id'];?>" onclick="return confirm('Anda yakin ingin menghapus pakan <?php echo $data['transaction_id']; ?> ?');">
+                          </a>
+     
+                          <a data-toggle="tooltip" data-placement="top" title="Hapus" class="btn btn-danger btn-sm" href="modules/hewan/proses.php?act=delete4&id=<?php echo $data['transaction_id'];?>" onclick="return confirm('Anda yakin ingin menghapus hewan <?php echo $data['transaction_id']; ?> ?');">
                               <i style="color:#fff" class="glyphicon glyphicon-trash"></i>
                           </a>
+
               <?php
               
               }

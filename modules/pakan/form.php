@@ -320,7 +320,7 @@ elseif ($_GET['form']=='add3') { ?>
               </div>
  
               <div class="form-group">
-                <label class="col-sm-2 control-label">Keterangan</label>
+                <label class="col-sm-2 control-label">Penyedia</label>
                 <div class="col-sm-5">
                   <div class="input-group">
                     <input type="text" class="form-control" id="misc" name="misc" autocomplete="off" >

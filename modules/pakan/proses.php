@@ -87,7 +87,7 @@ else {
             else{
                 // Query Tambah Pakan
                 $query = mysqli_query($mysqli, "INSERT INTO pakan(item_id,item_name,amount,type,use_for,item_image) 
-                                                VALUES('$item_id','$item_name','$amount','$type','$use_for','$item_image')")
+                                                VALUES($item_id,'$item_name',$amount,'$type','$use_for','$item_image')")
                                                 or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));    
                 if ($query) {
                     header("location: ../../main.php?module=daftarpakan&alert=1");
@@ -112,7 +112,7 @@ else {
                 $amount2 = (int)$data['amount'] - $amount; 
                 $item_id = $data['item_id'];
                 $item_name = $data['item_name'];
-                $query = mysqli_query($mysqli, "UPDATE pakan SET amount = '$amount2' WHERE item_name = '$item_name'")
+                $query = mysqli_query($mysqli, "UPDATE pakan SET amount = $amount2 WHERE item_name = '$item_name'")
                         or die('Ada kesalahan pada query update : '.mysqli_error($mysqli));
                 $created_user = $_SESSION['user_id'];
                 // Query Pakan Expired
@@ -128,7 +128,7 @@ else {
                 }           
                 $expired_id = "E$num";
                 $query = mysqli_query($mysqli, "INSERT INTO kedaluarsa(expired_id,item_name,amount) 
-                VALUES('$expired_id','$item_name','$amount')")
+                VALUES('$expired_id','$item_name',$amount)")
                         or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));
                 // Query Pakan Keluar
                 $query = $mysqli->query("SELECT * from barang_keluar order by transaction_id desc limit 1");
@@ -145,7 +145,7 @@ else {
                 $tracked_by = $_SESSION['acces'];
                 $misc = "Kadaluarsa";
                 $query = mysqli_query($mysqli, "INSERT INTO barang_keluar(transaction_id,item_id,description,amount,tracked_by,misc)
-                        VALUES('$transaction_id','$item_id','$item_name','$amount','$tracked_by','Kadaluarsa')");
+                        VALUES('$transaction_id',$item_id,'$item_name',$amount,'$tracked_by','Kadaluarsa')");
                 }
                 if($query){
                     header("location: ../../main.php?module=pakanrusak&alert=1");
@@ -164,15 +164,15 @@ else {
             $tracked_by     = trim($_POST['tracked_by']);
             $misc           = trim($_POST['misc']);
             // Query Ambil Nama
-            $query      = mysqli_query($mysqli, "SELECT * FROM pakan WHERE item_id = '$item_id'");
+            $query      = mysqli_query($mysqli, "SELECT * FROM pakan WHERE item_id = $item_id");
             $data       = $query->fetch_assoc();
             $item_name  = $data['item_name']; 
             // Query Update Jumlah Pakan ++
-            $query = mysqli_query($mysqli, "UPDATE pakan SET amount = amount + $amount2 WHERE item_id = '$item_id'")
+            $query = mysqli_query($mysqli, "UPDATE pakan SET amount = amount + $amount WHERE item_id = $item_id")
                          or die('Ada kesalahan pada query update : '.mysqli_error($mysqli));
             // Query Tambah Pakan Masuk
             $query = mysqli_query($mysqli, "INSERT INTO barang_masuk(transaction_id,item_id,description,amount,tracked_by,misc)
-                                            VALUES('$transaction_id','$item_id','$item_name','$amount','$tracked_by','$misc')")
+                                            VALUES('$transaction_id',$item_id,'$item_name',$amount,'$tracked_by','$misc')")
                                             or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));    
             if ($query) {
                 header("location: ../../main.php?module=pakanmasuk&alert=1");
@@ -189,19 +189,19 @@ else {
             $misc             = trim($_POST['misc']);
             $enough = false;
             // Query Cek Jumlah Pakan 
-            $query = $mysqli->query("SELECT * FROM pakan where item_id = '$item_id'");
+            $query = $mysqli->query("SELECT * FROM pakan where item_id = $item_id");
             $data = $query->fetch_assoc();
             $item_name  = $data['item_name']; 
             // Cek Jumlah Stok Sebelum Keluarkan Barang
             if((int)$data['amount'] >= $amount){
                 $enough=true;
                 $amount2 = (int)$data['amount'] - $amount; 
-                $query = mysqli_query($mysqli, "UPDATE pakan SET amount = $amount2' WHERE item_id = '$item_id'")
+                $query = mysqli_query($mysqli, "UPDATE pakan SET amount = $amount2 WHERE item_id = $item_id")
                             or die('Ada kesalahan pada query update : '.mysqli_error($mysqli));
                             $created_user = $_SESSION['user_id'];
                 // perintah query untuk menyimpan data ke tabel obat
                 $query = mysqli_query($mysqli, "INSERT INTO barang_keluar(transaction_id,item_id,description,amount,tracked_by,misc)
-                        VALUES('$transaction_id','$item_id','$item_name','$amount','$tracked_by','$misc')")
+                        VALUES('$transaction_id',$item_id,'$item_name',$amount,'$tracked_by','$misc')")
                         or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));    
                 // cek query
                 if ($query) {
@@ -238,13 +238,13 @@ else {
                     $updated_user = $_SESSION['user_id'];
 
                     // perintah query untuk mengubah data pada tabel obat
-                    $query = mysqli_query($mysqli, "UPDATE pakan SET  item_id       = '$item_id',
+                    $query = mysqli_query($mysqli, "UPDATE pakan SET  item_id       = $item_id,
                                                                         item_name   = '$item_name',
-                                                                        amount      = '$amount',
+                                                                        amount      = $amount,
                                                                         type        = '$type',
                                                                         use_for     = '$use_for',
                                                                         item_image  = '$item_image'
-                                                                WHERE item_id       = '$item_id'")
+                                                                WHERE item_id       = $item_id")
                                                     or die('Ada kesalahan pada query update : '.mysqli_error($mysqli));
 
                     // cek query
@@ -260,12 +260,12 @@ else {
     elseif ($_GET['act']=='update3') {
         if (isset($_POST['simpan'])) {
             if (isset($_POST['transaction_id'])) {
+                $transaction_id = $_POST['transaction_id'];
+                $item_name      = $_POST['description'];
+                $amount         = $_POST['amount'];
                 // ambil data hasil submit dari form
                 $query          = mysqli_query($mysqli, "SELECT * FROM barang_masuk WHERE transaction_id ='$transaction_id'");
                 $data           = $query->fetch_assoc();
-                $transaction_id = $_POST['transaction_id'];
-                $description    = $_POST['description'];
-                $amount         = $_POST['amount'];
                 $amountAwal = $data['amount'];
                 // ambil item_id dari query
                 $query          = mysqli_query($mysqli, "SELECT * FROM pakan WHERE item_name ='$item_name'");
@@ -289,10 +289,10 @@ else {
                         header("location: ../../main.php?module=pakanmasuk&alert=5");
                     }
                 }
-                $query = mysqli_query($mysqli, "UPDATE barang_masuk set item_id = '$item_id, item_name='$item_name, amount='$amount' where item_name='$item_name")
-                                            or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));    
+                $query = mysqli_query($mysqli, "UPDATE barang_masuk set item_id = $item_id, description='$item_name', amount=$amount where transaction_id='$transaction_id'")
+                                            or die('Ada kesalahan pada query Update pakan masuk : '.mysqli_error($mysqli));    
                 if($query){
-                    header("location: ../../main.php?module=pakanmasuk&alert=1");
+                    header("location: ../../main.php?module=pakanmasuk&alert=2");
                 }
             }
         }
@@ -330,7 +330,7 @@ else {
                         header("location: ../../main.php?module=pakankeluar&alert=5");
                     }
                 }
-                $query = mysqli_query($mysqli, "UPDATE barang_keluar set item_id = '$item_id, item_name='$item_name, amount='$amount' where item_name='$item_name")
+                $query = mysqli_query($mysqli, "UPDATE barang_keluar set item_id = $item_id, item_name='$item_name', amount=$amount where item_name='$item_name'")
                                             or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));    
                 if($query){
                     header("location: ../../main.php?module=pakankeluar&alert=1");
@@ -344,7 +344,7 @@ else {
             $item_id = $_GET['id'];
     
             // perintah query untuk menghapus data pada tabel obat
-            $query = mysqli_query($mysqli, "DELETE FROM pakan WHERE item_id='$item_id'")
+            $query = mysqli_query($mysqli, "DELETE FROM pakan WHERE item_id=$item_id")
                                             or die('Ada kesalahan pada query delete : '.mysqli_error($mysqli));
 
             // cek hasil query
@@ -374,7 +374,7 @@ else {
     elseif ($_GET['act']=='delete3') {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $query = mysqli_query($mysqli, "SELECT * from barang_masuk WHERE transaction_id =$id");
+            $query = mysqli_query($mysqli, "SELECT * from barang_masuk WHERE transaction_id ='$id'");
             $data = $query->fetch_assoc();
             $kurangi = $data['amount'];
             $item_id = $data['item_id'];
@@ -382,7 +382,7 @@ else {
             $amount = $data['amount'];
             if($amount >= $kurangi){
                 $query = mysqli_query($mysqli, "UPDATE pakan set amount = amount -$kurangi WHERE item_id =$item_id");
-                $query = mysqli_query($mysqli, "DELETE FROM kedaluarsa WHERE transaction_id='$id'")
+                $query = mysqli_query($mysqli, "DELETE FROM barang_masuk WHERE transaction_id='$id'")
                                             or die('Ada kesalahan pada query delete : '.mysqli_error($mysqli));
                 if ($query) {
                     header("location: ../../main.php?module=pakanmasuk&alert=3");

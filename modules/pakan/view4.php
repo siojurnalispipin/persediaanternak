@@ -28,7 +28,7 @@
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              Data Pakan Keluar baru berhasil disimpan.
+              <p style='color:black;'>Data Pakan Keluar baru berhasil disimpan.</p>
             </div>";
     }
     // jika alert = 2
@@ -37,7 +37,7 @@
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              Data Pakan Keluar berhasil diubah.
+              <p style='color:black;'>Data Pakan Keluar berhasil diubah.</p>
             </div>";
     }
     // jika alert = 3
@@ -46,7 +46,7 @@
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              Data Pakan Keluar berhasil dihapus.
+              <p style='color:black;'>Data Pakan Keluar berhasil dihapus.</p>
             </div>";
     }
     // jika alert = 4
@@ -55,7 +55,7 @@
       echo "<div class='alert alert-danger alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-close'></i> Gagal!</h4>
-              Jumlah Pakan Keluar yang dimasukkan melebihi Stok.
+              <p style='color:black;'>Jumlah Pakan Keluar yang dimasukkan melebihi Stok.</p>
             </div>";
     }
     // jika alert = 5
@@ -64,8 +64,8 @@
       echo "<div class='alert alert-danger alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4>  <i class='icon fa fa-close'></i> Gagal!</h4>
-              <p>Perubahan Data Pakan Keluar Gagal.</p>
-              <p>Jumlah Perubahan melebihi Stok.</p>
+              <p style='color:black;'>Perubahan Data Pakan Keluar Gagal.</p>
+              <p style='color:black;'>Jumlah Perubahan melebihi Stok.</p>
             </div>";
     }
     ?>
