@@ -106,8 +106,8 @@ if ($_SESSION['acces']=='Admin') { ?>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
         		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kedaluarsa </a></li>
-						<li  class="active"><a href="?module=pakanmasuk"><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i>Pakan Masuk </a></li>
-						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan KeLuar </a></li>
+						<li><a href="?module=pakanmasuk"><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
+						<li  class="active"><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan KeLuar </a></li>
       		</ul>
     	</li>
     <?php
@@ -136,8 +136,8 @@ if ($_SESSION['acces']=='Admin') { ?>
       		<ul class="treeview-menu">
         		<li class="active"><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
         		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Ternak Sakit </a></li>
-						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
-						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Ternak KeLuar </a></li>
+						<li><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
+						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak KeLuar </a></li>
       		</ul>
     	</li>
     <?php
@@ -194,7 +194,7 @@ if ($_SESSION['acces']=='Admin') { ?>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
         		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Ternak Sakit </a></li>
-						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
+						<li><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
 						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak KeLuar </a></li>
       		</ul>
     	</li>

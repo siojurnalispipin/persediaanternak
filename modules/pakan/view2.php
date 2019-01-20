@@ -1,7 +1,7 @@
 
 <section class="content-header">
   <h1>
-    <i class="fa fa-folder-o icon-title"></i> Pakan Kedaluarsa
+    <i class="fa fa-folder-o icon-title"></i> Pakan Kadaluarsa
 
     <a class="btn btn-primary btn-social pull-right" href="?module=form_pakan&form=add2" title="Tambah Data" data-toggle="tooltip">
       <i class="fa fa-plus"></i> Tambah
@@ -55,7 +55,7 @@
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4 style='color:red;'>Gagal!</h4>
-              <p style='color:black;'>Penambahan Pakan Kedaluarsa gagal.</p>
+              <p style='color:black;'>Penambahan Pakan Kadaluarsa gagal.</p>
             </div>";
     }
     ?>
@@ -68,7 +68,7 @@
             <thead>
               <tr>
                 <th class="center">No.</th>
-                <th class="center">Kode Kedaluarsa</th>
+                <th class="center">Kode Kadaluarsa</th>
                 <th class="center">Nama Pakan</th>
                 <th class="center">Jumlah</th>
                 <th class="center">Tanggal</th>
@@ -100,7 +100,7 @@
                         <div>
                           ";
             ?>
-                          <a data-toggle="tooltip" data-placement="top" title="Hapus" class="btn btn-danger btn-sm" href="modules/pakan/proses.php?act=deleteex&id=<?php echo $data['expired_id'];?>" onclick="return confirm('Anda yakin ingin menghapus Laporan <?php echo $data['expired_id']; ?> ?');">
+                          <a data-toggle="tooltip" data-placement="top" title="Hapus" class="btn btn-danger btn-sm" href="modules/pakan/proses.php?act=delete2&id=<?php echo $data['expired_id'];?>" onclick="return confirm('Anda yakin ingin menghapus Laporan <?php echo $data['expired_id']; ?> ?');">
                               <i style="color:#fff" class="glyphicon glyphicon-trash"></i>
                           </a>
             <?php
