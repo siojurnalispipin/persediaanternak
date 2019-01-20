@@ -15,12 +15,12 @@ else{
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    <i class="fa fa-file-text-o icon-title"></i> Laporan Pakan Masuk
+    <i class="fa fa-file-text-o icon-title"></i> Laporan Pakan Keluar
   </h1>
   <ol class="breadcrumb">
     <li><a href="?module=home"><i class="fa fa-home"></i> Beranda</a></li>
     <li class="active">Laporan</li>
-    <li class="active">Pakan Masuk</li>
+    <li class="active">Pakan Keluar</li>
   </ol>
 </section>
 
@@ -32,7 +32,7 @@ else{
       <!-- Form Laporan -->
       <div class="box box-primary">
         <!-- form start -->
-        <form role="form" class="form-horizontal" method="GET" action="modules/laporanmasuk/cetak.php" target="_blank">
+        <form role="form" class="form-horizontal" method="GET" action="modules/laporanpakankeluar/cetak.php" target="_blank">
           <div class="box-body">
 
             <div class="form-group">

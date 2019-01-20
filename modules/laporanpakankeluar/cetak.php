@@ -26,16 +26,14 @@ $rest = substr($tgl_akhir, 0, 8);
 $rest = $rest.$tgl;
 $tgl_akhir = $rest;
 
-
 if($tgl1 > $hari_ini || $tgl2 > $hari_ini){
     echo "<script type='text/javascript'>alert('Pastikan Tanggal tidak lebih besar dari hari ini !');</script>";
-    header("location: ../../main.php?module=laporanmasuk&alert=1");
+    header("location: ../../main.php?module=laporanpakankeluar&alert=1");
 }
 elseif(isset($_GET['tgl_awal'])){
     $no    = 1;
     $query = mysqli_query($mysqli, "SELECT transaction_id,item_id,description,amount,tracked_by,misc,transaction_date
-                                    FROM barang_masuk WHERE transaction_date BETWEEN '$tgl_awal' AND '$tgl_akhir' AND item_id < 70000 
-                                    ORDER BY item_id ASC") // fungsi query untuk menampilkan data dari tabel obat masuk
+                                    FROM barang_keluar WHERE item_id < 70000 and transaction_date >= '$tgl_awal' AND transaction_date <= '$tgl_akhir' ORDER BY item_id ASC") // fungsi query untuk menampilkan data dari tabel obat masuk
                                     or die('Ada kesalahan pada query tampil Transaksi : '.mysqli_error($mysqli));
     $count  = mysqli_num_rows($query);
 }

@@ -26,17 +26,14 @@ $rest = substr($tgl_akhir, 0, 8);
 $rest = $rest.$tgl;
 $tgl_akhir = $rest;
 
-
 if($tgl1 > $hari_ini || $tgl2 > $hari_ini){
     echo "<script type='text/javascript'>alert('Pastikan Tanggal tidak lebih besar dari hari ini !');</script>";
-    header("location: ../../main.php?module=laporanmasuk&alert=1");
+    header("location: ../../main.php?module=laporanhewankeluar&alert=1");
 }
 elseif(isset($_GET['tgl_awal'])){
     $no    = 1;
-    $query = mysqli_query($mysqli, "SELECT transaction_id,item_id,description,amount,tracked_by,misc,transaction_date
-                                    FROM barang_masuk WHERE transaction_date BETWEEN '$tgl_awal' AND '$tgl_akhir' AND item_id < 70000 
-                                    ORDER BY item_id ASC") // fungsi query untuk menampilkan data dari tabel obat masuk
-                                    or die('Ada kesalahan pada query tampil Transaksi : '.mysqli_error($mysqli));
+    $query = mysqli_query($mysqli, "SELECT expired_id,item_name,amount,expired_date FROM kedaluarsa WHERE expired_date >= '$tgl_awal' AND expired_date <= '$tgl_akhir' ORDER BY expired_id ASC") // fungsi query untuk menampilkan data dari tabel obat masuk
+    or die('Ada kesalahan pada query tampil Transaksi : '.mysqli_error($mysqli));
     $count  = mysqli_num_rows($query);
 }
 else
@@ -49,13 +46,13 @@ else
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <title>LAPORAN PAKAN MASUK</title>
+    <title>LAPORAN KADALURSA</title>
     <link rel="stylesheet" type="text/css" href="../../assets/css/laporan.css" />
 </head>
 
 <body>
     <div id="title">
-        LAPORAN PAKAN MASUK
+        LAPORAN KADALUARSA
     </div>
     <?php  
     if ($tgl_awal==$tgl_akhir) { ?>
@@ -80,11 +77,10 @@ else
             <thead style="background:#e8ecee">
                 <tr class="tr-title">
                     <th height="20" align="center" valign="middle">NO.</th>
-                    <th height="20" align="center" valign="middle">KODE TRANSAKSI</th>
-                    <th height="20" align="center" valign="middle">KODE PAKAN</th>
+                    <th height="20" align="center" valign="middle">KODE KADALUARSA</th>
                     <th height="20" align="center" valign="middle">TANGGAL</th>
                     <th height="20" align="center" valign="middle">NAMA PAKAN</th>
-                    <th height="20" align="center" valign="middle">JUMLAH MASUK</th>
+                    <th height="20" align="center" valign="middle">JUMLAH</th>
                 </tr>
             </thead>
             <tbody>
@@ -96,7 +92,6 @@ else
                     <td width='120' height='13' align='center' valign='middle'></td>
                     <td width='80' height='13' align='center' valign='middle'></td>
                     <td width='80' height='13' align='center' valign='middle'></td>
-                    <td style='padding-left:5px;' width='155' height='13' valign='middle'></td>
                     <td style='padding-right:10px;' width='100' height='13' align='right' valign='middle'></td>
                 </tr>";
     }
@@ -104,18 +99,18 @@ else
     else {
         // tampilkan data
         while ($data = mysqli_fetch_assoc($query)) {
-            $tanggal       = $data['transaction_date'];
+            $tanggal       = $data['expired_date'];
             $exp           = explode('-',$tanggal);
             $tanggal_masuk = $exp[2]."-".$exp[1]."-".$exp[0];
 
             // menampilkan isi tabel dari database ke tabel di aplikasi
             echo "  <tr>
                         <td width='40' height='13' align='center' valign='middle'>$no</td>
-                        <td width='120' height='13' align='center' valign='middle'>$data[transaction_id]</td>
-                        <td width='80' height='13' align='center' valign='middle'>$data[item_id]</td>
-                        <td width='165' height='13' align='center' valign='middle'>$data[transaction_date]</td>
-                        <td width='180' height='13' style='padding-left:10px; valign='middle'>$data[description]</td>
-                        <td style='padding-left:5px;' align='center' width='100' height='13' valign='middle'>$data[amount]</td>
+                        <td width='120' height='13' align='center' valign='middle'>$data[expired_id]</td>
+                        <td width='180' height='13' align='center' valign='middle'>$data[expired_date]</td>
+                        <td width='185' height='13' align='center' valign='middle'>$data[item_name]</td>
+                        <td width='200' height='13' style='padding-left:10px; valign='middle'>$data[amount]</td>
+                        
                     </tr>";
             $no++;
         }
@@ -140,7 +135,7 @@ else
 
 </html><!-- Akhir halaman HTML yang akan di konvert -->
 <?php
-$filename="LAPORAN DATA OBAT MASUK.pdf"; //ubah untuk menentukan nama file pdf yang dihasilkan nantinya
+$filename="LAPORAN DATA HEWAN SAKIT.pdf"; //ubah untuk menentukan nama file pdf yang dihasilkan nantinya
 //==========================================================================================================
 $content = ob_get_clean();
 $content = '<page style="font-family: freeserif">'.($content).'</page>';

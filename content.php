@@ -94,9 +94,25 @@ else {
 	elseif ($_GET['module'] == 'form_ternak_sakit') {
 		include "modules/sakit/form.php";
 	}
+
+
+
+
 //laporan
 	elseif ($_GET['module'] == 'laporanmasuk') {
 		include "modules/laporanmasuk/view.php";
+	}
+	elseif ($_GET['module'] == 'laporanpakankeluar') {
+		include "modules/laporanpakankeluar/view.php";
+	}
+	elseif ($_GET['module'] == 'laporanhewankeluar') {
+		include "modules/laporanhewankeluar/view.php";
+	}
+	elseif ($_GET['module'] == 'laporanhewansakit') {
+		include "modules/laporanhewansakit/view.php";
+	}
+	elseif ($_GET['module'] == 'laporankadaluarsa') {
+		include "modules/laporankadaluarsa/view.php";
 	}
 	// 
 
