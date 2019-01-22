@@ -84,7 +84,7 @@
       
 
 
-            $query = $mysqli->query("SELECT * FROM sakit ORDER BY sick_id ASC");
+            $query = $mysqli->query("SELECT * FROM sakit ORDER BY sick_id DESC");
             //$data = $query->fetch_assoc();
            
             // tampilkan data
