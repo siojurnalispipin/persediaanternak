@@ -12,13 +12,45 @@
 /* panggil file database.php untuk koneksi ke database */
 require_once "config/database.php";
 
-// fungsi query untuk menampilkan data dari tabel user
+require_once "auto/penjualan.php";
+$hampirhabis = false;
+$namahabis = array();
+$namahabis2 = array();
+$jumlahhabis = array();
+$query2 = $mysqli->query("SELECT * FROM hewan");
+$query3 = $mysqli->query("SELECT * FROM pakan");
+while ($data2 = $query2->fetch_assoc()) { 
+  if($data2['amount']<10){
+    $nama = $data2['item_name'];
+    array_push($namahabis, $nama);
+    $hampirhabis = true;}
+}
+while ($data3 = $query3->fetch_assoc()) { 
+  if($data3['amount']<10){
+    $nama = $data3['item_name'];
+    array_push($namahabis2, $nama);
+    $hampirhabis = true;}
+}
 $user_id = $_SESSION['user_id'];
 $query = $mysqli->query("SELECT * FROM anggota WHERE user_id = '$user_id'");
-
 // tampilkan data
 $data = $query->fetch_assoc();
-?>
+?><?php
+
+if($hampirhabis){
+echo "<li class='dropdown user user-menu' >
+     <a href='#'  class='dropdown-toggle fa fa-bell-o' data-toggle='dropdown' style='color:red'> Pemberitahuan</a>
+<ul class='dropdown-menu' style='appearance:none'>";
+  for($i = 0 ; $i < sizeof($namahabis);$i++){
+    echo "<li><a href='?module=daftarhewan' style='color:black;' >  Stok <b>$namahabis[$i]</b> hampir habis !</a></li>";
+  }
+  for($i = 0 ; $i < sizeof($namahabis2);$i++){
+    echo "<li><a href='?module=daftarpakan' style='color:black;' >  Stok <b>$namahabis2[$i]</b> hampir habis !</a></li>";
+  }
+    echo "</ul></li>";}
+   ?>
+
+
 
 <!--Menu Pakan -->
 <li class="dropdown user user-menu">
@@ -26,19 +58,19 @@ $data = $query->fetch_assoc();
     Pakan
   </a>
   <ul class="dropdown-menu">
- 
+  <li>
+    <a href="?module=pakanmasuk">Pakan Masuk
+  </a>
+    </li>
     <li >
     <a href="?module=daftarpakan">Stok Pakan
   </a>
     </li>
     <li>
-    <a href="?module=pakanrusak">Pakan Kadaluarsa
+    <a href="?module=pakanrusak">Kadaluarsa
   </a>
     </li>
-    <li>
-    <a href="?module=pakanmasuk">Pakan Masuk
-  </a>
-    </li>
+    
     <li>
     <a href="?module=pakankeluar">Pakan Keluar
   </a>
@@ -52,17 +84,16 @@ $data = $query->fetch_assoc();
     Ternak
   </a>
   <ul class="dropdown-menu">
- 
+  <li>
+    <a href="?module=hewanmasuk">Ternak Masuk
+  </a>
+    </li>
     <li >
     <a href="?module=daftarhewan">Stok Ternak
   </a>
     </li>
     <li>
-    <a href="?module=hewansakit">Ternak Sakit
-  </a>
-    </li>
-    <li>
-    <a href="?module=hewanmasuk">Ternak Masuk
+    <a href="?module=hewansakit">Karantina
   </a>
     </li>
     <li>
@@ -75,7 +106,7 @@ $data = $query->fetch_assoc();
 <!--Menu Keluar Masuk -->
 <li class="dropdown user user-menu">
   <a href="#" class="dropdown-toggle fa fa-angle-down" data-toggle="dropdown">
-    Gabungan
+    Keseluruhan
   </a>
   <ul class="dropdown-menu">
     <li >

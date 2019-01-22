@@ -1,4 +1,4 @@
-<?php require_once "auto/penjualan.php";?>
+
 
 <section class="content-header">
     <h1>
@@ -192,7 +192,7 @@
 
     <!-- Tambah Info Hewan sakit dan kadaluarsa -->
     <div class="row">
-        <a href="?module=daftarhewan" class="small-box-footer" title="Lihat Detail" data-toggle="tooltip">
+        <a href="?module=hewansakit" class="small-box-footer" title="Lihat Detail" data-toggle="tooltip">
             <div class="col-lg-3 col-xs-6" style="width:50%">
                 <!-- small box -->
 
@@ -224,7 +224,7 @@
     <!--=============================================================================================================-->
 
 
-    <a href="?module=daftarhewan" class="small-box-footer" data-toggle="tooltip" style="hover-color:#00094E">
+    <a href="?module=pakanrusak" class="small-box-footer" data-toggle="tooltip" style="hover-color:#00094E">
         <div class="col-lg-3 col-xs-6" style="width:50%">
             <!-- small box -->
             <div style="background-color:#CE794E;color:#fff;height:110px" onmouseover="this.style.background='gray';"

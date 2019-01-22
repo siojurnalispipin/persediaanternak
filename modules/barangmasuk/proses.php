@@ -31,13 +31,11 @@ else {
                 $item_id = $data['item_id'];
                 $item_name = $data['item_name'];
                 $type = $data['type'];
-                $price = $data['price'];
                 $item_image = $data['item_image'];
                 $query = mysqli_query($mysqli, "UPDATE pakan SET  item_id      = '$item_id',
                                                                     item_name  = '$item_name',
                                                                     amount     = '$amount2',
                                                                     type       = '$type',
-                                                                    price      = '$price',
                                                                     item_image = '$item_image'
                                                           WHERE item_name      = '$item_name'")
                          or die('Ada kesalahan pada query update : '.mysqli_error($mysqli));
@@ -50,13 +48,11 @@ else {
                 $item_id = $data['item_id'];
                 $item_name = $data['item_name'];
                 $type = $data['type'];
-                $price = $data['price'];
                 $item_image = $data['item_image'];
                 $query = mysqli_query($mysqli, "UPDATE hewan SET  item_id      = '$item_id',
                                                                     item_name  = '$item_name',
                                                                     amount     = '$amount2',
                                                                     type       = '$type',
-                                                                    price      = '$price',
                                                                     item_image = '$item_image'
                                                             WHERE item_name    = '$item_name'")
                          or die('Ada kesalahan pada query update : '.mysqli_error($mysqli));
@@ -122,13 +118,11 @@ else {
                     $item_name = $data['item_name'];
                     //$item_id = $data['item_id'];
                     $type = $data['type'];
-                    $price = $data['price'];
                     $item_image = $data['item_image'];
                     $query = mysqli_query($mysqli, "UPDATE pakan SET  item_id       = '$item_id',
                                                                         item_name      = '$item_name',
                                                                         amount      = '$amount2',
                                                                         type          = '$type',
-                                                                        price = '$price'
                                                                 WHERE item_id      = '$item_id'")
                                                     or die('Ada kesalahan pada query update : '.mysqli_error($mysqli));
 
@@ -150,13 +144,11 @@ else {
                     //$item_id = $data['item_id'];
                     $item_name = $data['item_name'];
                     $type = $data['type'];
-                    $price = $data['price'];
                     $item_image = $data['item_image'];
                     $query = mysqli_query($mysqli, "UPDATE hewan SET  item_id       = '$item_id',
                                                                         item_name      = '$item_name',
                                                                         amount      = '$amount2',
                                                                         type          = '$type',
-                                                                        price = '$price',
                                                                         item_image = '$item_image'
                                                                 WHERE item_id      = '$item_id'")
                                                     or die('Ada kesalahan pada query update : '.mysqli_error($mysqli));

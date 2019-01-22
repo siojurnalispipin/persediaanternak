@@ -1,58 +1,27 @@
-<!-- Aplikasi Persediaan Obat pada Apotek
-*******************************************************
-* Developer    : Indra Styawantoro
-* Company      : Indra Studio
-* Release Date : 1 April 2017
-* Website      : www.indrasatya.com
-* E-mail       : indra.setyawantoro@gmail.com
-* Phone        : +62-856-6991-9769
--->
-
 <?php 
-// fungsi pengecekan level untuk menampilkan menu sesuai dengan hak akses
-
 //============================================================================================================
 // jika hak akses = Super Admin, tampilkan menu
 if ($_SESSION['acces']=='Admin') { ?>
 	<!-- sidebar menu start -->
     <ul class="sidebar-menu">
         <li class="header">MAIN MENU</li>
-
 	<?php 
-	// fungsi untuk pengecekan menu aktif
-	// jika menu home dipilih, menu home aktif
-
-
-
-	/*if ($_GET["module"]=="home") { ?>
-		<li class="active">
-			<a href="?module=home"><i class="fa fa-home"></i> Beranda </a>
-	  	</li>
-	<?php
-	}
-	// jika tidak, menu home tidak aktif
-	else { ?>
-		<li>
-			<a href="?module=home"><i class="fa fa-home"></i> Beranda </a>
-	  	</li>
-	<?php
-	}*/
-
+  // Jika Home dipilih
 	if ($_GET["module"]=="home") { ?>
 		<li class="active">
 			<a href="?module=home"><i class="fa fa-home"></i> Beranda </a>
 	  	</li>
 	<?php
 	}
-	// jika tidak, menu home tidak aktif
+	// Jika Home Tidak dipilih
 	else { ?>
 		<li>
 			<a href="?module=home"><i class="fa fa-home"></i> Beranda </a>
 	  	</li>
 	<?php
 	}
-  //top f menu pakan================================================================
-
+	//===== Menu Pakan
+  // Jika Daftar Pakan dipilih
   if ($_GET["module"]=="daftarpakan") { ?>
 		<li class="active treeview">
           	<a href="javascript:void(0);">
@@ -60,14 +29,14 @@ if ($_SESSION['acces']=='Admin') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li class="active"><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
-        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kadaluarsa </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Kadaluarsa </a></li>
 						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
-						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan KeLuar </a></li>
+						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan Keluar </a></li>
       		</ul>
     	</li>
     <?php
 	}
-	// jika menu Laporan obat Masuk dipilih, menu Laporan obat Masuk aktif
+  // Jika Pakan Kadaluarsa dipilih
 	elseif ($_GET["module"]=="pakanrusak") { ?>
 		<li class="active treeview">
           	<a href="javascript:void(0);">
@@ -77,12 +46,12 @@ if ($_SESSION['acces']=='Admin') { ?>
         		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
         		<li class="active"><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kedaluarsa </a></li>
 						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
-						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan KeLuar </a></li>
+						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan Keluar </a></li>
       		</ul>
     	</li>
     <?php
 	}
-	// jika menu Laporan obat Masuk dipilih, menu Laporan obat Masuk aktif
+  // Jika Pakan Masuk dipilih
 	elseif ($_GET["module"]=="pakanmasuk") { ?>
 		<li class="active treeview">
           	<a href="javascript:void(0);">
@@ -90,14 +59,14 @@ if ($_SESSION['acces']=='Admin') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
-        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kadaluarsa </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Kadaluarsa </a></li>
 						<li class="active"><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
-						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan KeLuar </a></li>
+						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan Keluar </a></li>
       		</ul>
     	</li>
     <?php
 	}
-	// jika menu Laporan obat Masuk dipilih, menu Laporan obat Masuk aktif
+  // Jika Pakan Keluar dipilih
 	elseif ($_GET["module"]=="pakankeluar") { ?>
 		<li class="active treeview">
           	<a href="javascript:void(0);">
@@ -105,14 +74,14 @@ if ($_SESSION['acces']=='Admin') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
-        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kadaluarsa </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Kadaluarsa </a></li>
 						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
-						<li  class="active"><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan KeLuar </a></li>
+						<li  class="active"><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan Keluar </a></li>
       		</ul>
     	</li>
     <?php
 	}
-// jika menu Laporan tidak dipilih, menu Laporan tidak aktif
+  // Jika Menu Hewan tidak dipilih
 	else { ?>
 		<li class="treeview">
           	<a href="javascript:void(0);">
@@ -120,14 +89,15 @@ if ($_SESSION['acces']=='Admin') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
-        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kadaluarsa </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Kadaluarsa </a></li>
 						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
-						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan KeLuar </a></li>
+						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan Keluar </a></li>
       		</ul>
     	</li>
     <?php
 	}
-
+	//===== Menu Hewan
+	// Jika Daftar Hewan dipilih
 	if ($_GET["module"]=="daftarhewan") { ?>
 		<li class="active treeview">
           	<a href="javascript:void(0);">
@@ -135,14 +105,14 @@ if ($_SESSION['acces']=='Admin') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li class="active"><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
-        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Ternak Sakit </a></li>
+        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Karantina </a></li>
 						<li><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
-						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak KeLuar </a></li>
+						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak Keluar </a></li>
       		</ul>
     	</li>
     <?php
 	}
-	// jika menu Laporan obat Masuk dipilih, menu Laporan obat Masuk aktif
+	// Jika Hewan Keluar dipilih
 	elseif ($_GET["module"]=="hewansakit") { ?>
 		<li class="active treeview">
           	<a href="javascript:void(0);">
@@ -150,13 +120,14 @@ if ($_SESSION['acces']=='Admin') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
-        		<li class="active"><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Ternak Sakit </a></li>
+        		<li class="active"><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Karantina </a></li>
 						<li><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
-						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak KeLuar </a></li>
+						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak Keluar </a></li>
       		</ul>
     	</li>
     <?php
 	}
+	// Jika Hewan Masuk dipilih
 	elseif ($_GET["module"]=="hewanmasuk") { ?>
 		<li class="active treeview">
           	<a href="javascript:void(0);">
@@ -164,13 +135,14 @@ if ($_SESSION['acces']=='Admin') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
-        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Ternak Sakit </a></li>
+        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Karantina </a></li>
 						<li class="active"><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
-						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak KeLuar </a></li>
+						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak Keluar </a></li>
       		</ul>
     	</li>
     <?php
 	}
+	// Jika Hewan Keluar dipilih
 	elseif ($_GET["module"]=="hewankeluar") { ?>
 		<li class="active treeview">
           	<a href="javascript:void(0);">
@@ -178,14 +150,14 @@ if ($_SESSION['acces']=='Admin') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
-        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Ternak Sakit </a></li>
+        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Karantina </a></li>
 						<li><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
-						<li class="active"><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak KeLuar </a></li>
+						<li class="active"><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak Keluar </a></li>
       		</ul>
     	</li>
     <?php
 	}
-	// jika menu Laporan tidak dipilih, menu Laporan tidak aktif
+	// Jika Menu Hewan tidak dipilih
 	else { ?>
 		<li class="treeview">
           	<a href="javascript:void(0);">
@@ -193,70 +165,63 @@ if ($_SESSION['acces']=='Admin') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
-        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Ternak Sakit </a></li>
+        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Karantina </a></li>
 						<li><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
-						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak KeLuar </a></li>
+						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak Keluar </a></li>
       		</ul>
     	</li>
     <?php
 	}
-
-  //bottom of menu pakan======================================
-
-
-  // jika menu data obat masuk dipilih, menu data obat masuk aktif
+  // Jika Menu Barang Masuk dipilih
   if ($_GET["module"]=="barangmasuk") { ?>
     <li class="active">
       <a href="?module=barangmasuk"><i class="fa fa-clone"></i> Barang Masuk </a>
       </li>
   <?php
   }
-  // jika tidak, menu data obat masuk tidak aktif
+  // Jika Menu Barang Masuk tidak dipilih
   else { ?>
     <li>
       <a href="?module=barangmasuk"><i class="fa fa-clone"></i> Barang Masuk </a>
       </li>
   <?php
   }
-
-	//Barang Keluar
+	// Jika Menu Barang Keluar dipilih
 	if ($_GET["module"]=="barangkeluar") { ?>
     <li class="active">
       <a href="?module=barangkeluar"><i class="fa fa-clone"></i> Barang Keluar </a>
       </li>
   <?php
   }
-  // jika tidak, menu data obat masuk tidak aktif
+  // Jika Menu Barang Keluar tidak dipilih
   else { ?>
     <li>
       <a href="?module=barangkeluar"><i class="fa fa-clone"></i> Barang Keluar </a>
       </li>
   <?php
   }
-
-	// jika menu user dipilih, menu user aktif
+	// Jika menu User dipilih
 	if ($_GET["module"]=="user" || $_GET["module"]=="form_user") { ?>
 		<li class="active">
 			<a href="?module=user"><i class="fa fa-user"></i> Manajemen User</a>
 	  	</li>
 	<?php
 	}
-	// jika tidak, menu user tidak aktif
+  // Jika menu User tidak dipilih
 	else { ?>
 		<li>
 			<a href="?module=user"><i class="fa fa-user"></i> Manajemen User</a>
 	  	</li>
 	<?php
 	}
-
-	// jika menu ubah password dipilih, menu ubah password aktif
+	// Jika Menu Ubah Password dipilih
 	if ($_GET["module"]=="password") { ?>
 		<li class="active">
 			<a href="?module=password"><i class="fa fa-lock"></i> Ubah Password</a>
 		</li>
 	<?php
 	}
-	// jika tidak, menu ubah password tidak aktif
+	// Jika Menu Ubah Password tidak dipilih
 	else { ?>
 		<li>
 			<a href="?module=password"><i class="fa fa-lock"></i> Ubah Password</a>
@@ -268,32 +233,28 @@ if ($_SESSION['acces']=='Admin') { ?>
 	<!--sidebar menu end-->
 <?php
 }
-
 //============================================================================================================
-// jika hak akses = Manajer, tampilkan menu
+// jika hak akses = Head Officer, tampilkan menu
 elseif ($_SESSION['acces']=='Head Officer') { ?>
-	<!-- sidebar menu start -->
     <ul class="sidebar-menu">
         <li class="header">MAIN MENU</li>
-
 	<?php 
-	// fungsi untuk pengecekan menu aktif
-	// jika menu home dipilih, menu home aktif
+  // Jika Home dipilih
 	if ($_GET["module"]=="home") { ?>
 		<li class="active">
 			<a href="?module=home"><i class="fa fa-home"></i> Beranda </a>
 	  	</li>
 	<?php
 	}
-	// jika tidak, menu home tidak aktif
+	// Jika Home Tidak dipilih
 	else { ?>
 		<li>
 			<a href="?module=home"><i class="fa fa-home"></i> Beranda </a>
 	  	</li>
 	<?php
 	}
-  //top f menu pakan================================================================
-
+	//===== Menu Pakan
+  // Jika Daftar Pakan dipilih
   if ($_GET["module"]=="daftarpakan") { ?>
 		<li class="active treeview">
           	<a href="javascript:void(0);">
@@ -301,12 +262,14 @@ elseif ($_SESSION['acces']=='Head Officer') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li class="active"><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
-        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i>Pakan Kadaluarsa </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Kadaluarsa </a></li>
+						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
+						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan Keluar </a></li>
       		</ul>
     	</li>
     <?php
 	}
-	// jika menu Laporan obat Masuk dipilih, menu Laporan obat Masuk aktif
+  // Jika Pakan Kadaluarsa dipilih
 	elseif ($_GET["module"]=="pakanrusak") { ?>
 		<li class="active treeview">
           	<a href="javascript:void(0);">
@@ -314,12 +277,44 @@ elseif ($_SESSION['acces']=='Head Officer') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
-        		<li class="active"><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kadaluarsa </a></li>
+        		<li class="active"><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kedaluarsa </a></li>
+						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
+						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan Keluar </a></li>
       		</ul>
     	</li>
     <?php
 	}
-	// jika menu Laporan tidak dipilih, menu Laporan tidak aktif
+  // Jika Pakan Masuk dipilih
+	elseif ($_GET["module"]=="pakanmasuk") { ?>
+		<li class="active treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Pakan</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Kadaluarsa </a></li>
+						<li class="active"><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
+						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan Keluar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+  // Jika Pakan Keluar dipilih
+	elseif ($_GET["module"]=="pakankeluar") { ?>
+		<li class="active treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Pakan</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Kadaluarsa </a></li>
+						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
+						<li  class="active"><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan Keluar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+  // Jika Menu Hewan tidak dipilih
 	else { ?>
 		<li class="treeview">
           	<a href="javascript:void(0);">
@@ -327,53 +322,125 @@ elseif ($_SESSION['acces']=='Head Officer') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
-        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kadaluarsa </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Kadaluarsa </a></li>
+						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
+						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan Keluar </a></li>
       		</ul>
     	</li>
     <?php
 	}
-
-  //bottom of menu pakan======================================
-
-
-  // jika menu data obat masuk dipilih, menu data obat masuk aktif
+	//===== Menu Hewan
+	// Jika Daftar Hewan dipilih
+	if ($_GET["module"]=="daftarhewan") { ?>
+		<li class="active treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Ternak</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li class="active"><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
+        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Karantina </a></li>
+						<li><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
+						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak Keluar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+	// Jika Hewan Keluar dipilih
+	elseif ($_GET["module"]=="hewansakit") { ?>
+		<li class="active treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Ternak</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
+        		<li class="active"><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Karantina </a></li>
+						<li><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
+						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak Keluar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+	// Jika Hewan Masuk dipilih
+	elseif ($_GET["module"]=="hewanmasuk") { ?>
+		<li class="active treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Ternak</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
+        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Karantina </a></li>
+						<li class="active"><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
+						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak Keluar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+	// Jika Hewan Keluar dipilih
+	elseif ($_GET["module"]=="hewankeluar") { ?>
+		<li class="active treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Ternak</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
+        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Karantina </a></li>
+						<li><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
+						<li class="active"><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak Keluar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+	// Jika Menu Hewan tidak dipilih
+	else { ?>
+		<li class="treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Ternak</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
+        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Karantina </a></li>
+						<li><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
+						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak Keluar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+  // Jika Menu Barang Masuk dipilih
   if ($_GET["module"]=="barangmasuk") { ?>
     <li class="active">
       <a href="?module=barangmasuk"><i class="fa fa-clone"></i> Barang Masuk </a>
       </li>
   <?php
   }
-  // jika tidak, menu data obat masuk tidak aktif
+  // Jika Menu Barang Masuk tidak dipilih
   else { ?>
     <li>
       <a href="?module=barangmasuk"><i class="fa fa-clone"></i> Barang Masuk </a>
       </li>
   <?php
   }
-
-	//Barang Keluar
+	// Jika Menu Barang Keluar dipilih
 	if ($_GET["module"]=="barangkeluar") { ?>
     <li class="active">
       <a href="?module=barangkeluar"><i class="fa fa-clone"></i> Barang Keluar </a>
       </li>
   <?php
   }
-  // jika tidak, menu data obat masuk tidak aktif
+  // Jika Menu Barang Keluar tidak dipilih
   else { ?>
     <li>
       <a href="?module=barangkeluar"><i class="fa fa-clone"></i> Barang Keluar </a>
       </li>
   <?php
   }
-
-	// jika menu ubah password dipilih, menu ubah password aktif
+	// Jika Menu Ubah Password dipilih
 	if ($_GET["module"]=="password") { ?>
 		<li class="active">
 			<a href="?module=password"><i class="fa fa-lock"></i> Ubah Password</a>
 		</li>
 	<?php
 	}
-	// jika tidak, menu ubah password tidak aktif
+	// Jika Menu Ubah Password tidak dipilih
 	else { ?>
 		<li>
 			<a href="?module=password"><i class="fa fa-lock"></i> Ubah Password</a>
@@ -386,108 +453,214 @@ elseif ($_SESSION['acces']=='Head Officer') { ?>
 <?php
 }
 //============================================================================================================
-
-// jika hak akses = Gudang, tampilkan menu
-if ($_SESSION['acces']=='Owner') { ?>
+// jika hak akses = Owner, tampilkan menu
+elseif ($_SESSION['acces']=='Owner') { ?>
 	<!-- sidebar menu start -->
     <ul class="sidebar-menu">
         <li class="header">MAIN MENU</li>
-
 	<?php 
-	// fungsi untuk pengecekan menu aktif
-	// jika menu home dipilih, menu home aktif
-  if ($_GET["module"]=="home") { ?>
+  // Jika Home dipilih
+	if ($_GET["module"]=="home") { ?>
+		<li class="active">
+			<a href="?module=home"><i class="fa fa-home"></i> Beranda </a>
+	  	</li>
+	<?php
+	}
+	// Jika Home Tidak dipilih
+	else { ?>
+		<li>
+			<a href="?module=home"><i class="fa fa-home"></i> Beranda </a>
+	  	</li>
+	<?php
+	}
+	//===== Menu Pakan
+  // Jika Daftar Pakan dipilih
+  if ($_GET["module"]=="daftarpakan") { ?>
+		<li class="active treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Pakan</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li class="active"><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Kadaluarsa </a></li>
+						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
+						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan Keluar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+  // Jika Pakan Kadaluarsa dipilih
+	elseif ($_GET["module"]=="pakanrusak") { ?>
+		<li class="active treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Pakan</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
+        		<li class="active"><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kedaluarsa </a></li>
+						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
+						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan Keluar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+  // Jika Pakan Masuk dipilih
+	elseif ($_GET["module"]=="pakanmasuk") { ?>
+		<li class="active treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Pakan</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Kadaluarsa </a></li>
+						<li class="active"><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
+						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan Keluar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+  // Jika Pakan Keluar dipilih
+	elseif ($_GET["module"]=="pakankeluar") { ?>
+		<li class="active treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Pakan</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Kadaluarsa </a></li>
+						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
+						<li  class="active"><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan Keluar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+  // Jika Menu Hewan tidak dipilih
+	else { ?>
+		<li class="treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Pakan</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Kadaluarsa </a></li>
+						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
+						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan Keluar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+	//===== Menu Hewan
+	// Jika Daftar Hewan dipilih
+	if ($_GET["module"]=="daftarhewan") { ?>
+		<li class="active treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Ternak</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li class="active"><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
+        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Karantina </a></li>
+						<li><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
+						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak Keluar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+	// Jika Hewan Keluar dipilih
+	elseif ($_GET["module"]=="hewansakit") { ?>
+		<li class="active treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Ternak</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
+        		<li class="active"><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Karantina </a></li>
+						<li><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
+						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak Keluar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+	// Jika Hewan Masuk dipilih
+	elseif ($_GET["module"]=="hewanmasuk") { ?>
+		<li class="active treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Ternak</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
+        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Karantina </a></li>
+						<li class="active"><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
+						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak Keluar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+	// Jika Hewan Keluar dipilih
+	elseif ($_GET["module"]=="hewankeluar") { ?>
+		<li class="active treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Ternak</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
+        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Karantina </a></li>
+						<li><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
+						<li class="active"><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak Keluar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+	// Jika Menu Hewan tidak dipilih
+	else { ?>
+		<li class="treeview">
+          	<a href="javascript:void(0);">
+            	<i class="fa fa-file-text"></i> <span>Ternak</span> <i class="fa fa-angle-left pull-right"></i>
+          	</a>
+      		<ul class="treeview-menu">
+        		<li><a href="?module=daftarhewan"><i class="fa fa-circle-o"></i> Daftar Ternak </a></li>
+        		<li><a href="?module=hewansakit"><i class="fa fa-circle-o"></i> Karantina </a></li>
+						<li><a href="?module=hewanmasuk"><i class="fa fa-circle-o"></i> Ternak Masuk </a></li>
+						<li><a href="?module=hewankeluar"><i class="fa fa-circle-o"></i> Ternak Keluar </a></li>
+      		</ul>
+    	</li>
+    <?php
+	}
+  // Jika Menu Barang Masuk dipilih
+  if ($_GET["module"]=="barangmasuk") { ?>
     <li class="active">
-      <a href="?module=home"><i class="fa fa-home"></i> home </a>
+      <a href="?module=barangmasuk"><i class="fa fa-clone"></i> Barang Masuk </a>
       </li>
   <?php
   }
-  // jika tidak, menu home tidak aktif
+  // Jika Menu Barang Masuk tidak dipilih
   else { ?>
     <li>
-      <a href="?module=home"><i class="fa fa-home"></i> home </a>
+      <a href="?module=barangmasuk"><i class="fa fa-clone"></i> Barang Masuk </a>
       </li>
   <?php
   }
-
-  // jika menu data obat dipilih, menu data obat aktif
-  if ($_GET["module"]=="obat" || $_GET["module"]=="form_obat") { ?>
+	// Jika Menu Barang Keluar dipilih
+	if ($_GET["module"]=="barangkeluar") { ?>
     <li class="active">
-      <a href="?module=obat"><i class="fa fa-folder"></i> Data Bibit & Ternak </a>
+      <a href="?module=barangkeluar"><i class="fa fa-clone"></i> Barang Keluar </a>
       </li>
   <?php
   }
-  // jika tidak, menu data obat tidak aktif
+  // Jika Menu Barang Keluar tidak dipilih
   else { ?>
     <li>
-      <a href="?module=obat"><i class="fa fa-folder"></i> Data Bibit & Ternak </a>
+      <a href="?module=barangkeluar"><i class="fa fa-clone"></i> Barang Keluar </a>
       </li>
   <?php
   }
-
-  // jika menu data obat masuk dipilih, menu data obat masuk aktif
-  if ($_GET["module"]=="obat_masuk" || $_GET["module"]=="form_obat_masuk") { ?>
-    <li class="active">
-      <a href="?module=obat_masuk"><i class="fa fa-clone"></i> Data Bibit & Ternak Masuk </a>
-      </li>
-  <?php
-  }
-  // jika tidak, menu data obat masuk tidak aktif
-  else { ?>
-    <li>
-      <a href="?module=obat_masuk"><i class="fa fa-clone"></i> Data Bibit & Ternak Masuk </a>
-      </li>
-  <?php
-  }
-
-  // jika menu Laporan Stok obat dipilih, menu Laporan Stok obat aktif
-  if ($_GET["module"]=="lap_stok") { ?>
-    <li class="active treeview">
-            <a href="javascript:void(0);">
-              <i class="fa fa-file-text"></i> <span>Laporan</span> <i class="fa fa-angle-left pull-right"></i>
-            </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="?module=lap_stok"><i class="fa fa-circle-o"></i> Stok Bibit & Ternak </a></li>
-            <li><a href="?module=lap_obat_masuk"><i class="fa fa-circle-o"></i> Bibit & Ternak Masuk </a></li>
-          </ul>
-      </li>
-    <?php
-  }
-  // jika menu Laporan obat Masuk dipilih, menu Laporan obat Masuk aktif
-  elseif ($_GET["module"]=="lap_obat_masuk") { ?>
-    <li class="active treeview">
-            <a href="javascript:void(0);">
-              <i class="fa fa-file-text"></i> <span>Laporan</span> <i class="fa fa-angle-left pull-right"></i>
-            </a>
-          <ul class="treeview-menu">
-            <li><a href="?module=lap_stok"><i class="fa fa-circle-o"></i> Stok Bibit & Ternak </a></li>
-            <li class="active"><a href="?module=lap_obat_masuk"><i class="fa fa-circle-o"></i> Bibit & Ternak Masuk </a></li>
-          </ul>
-      </li>
-    <?php
-  }
-  // jika menu Laporan tidak dipilih, menu Laporan tidak aktif
-  else { ?>
-    <li class="treeview">
-            <a href="javascript:void(0);">
-              <i class="fa fa-file-text"></i> <span>Laporan</span> <i class="fa fa-angle-left pull-right"></i>
-            </a>
-          <ul class="treeview-menu">
-            <li><a href="?module=lap_stok"><i class="fa fa-circle-o"></i> Stok Bibit & Ternak </a></li>
-            <li><a href="?module=lap_obat_masuk"><i class="fa fa-circle-o"></i> Bibit & Ternak Masuk </a></li>
-          </ul>
-      </li>
-    <?php
-  }
-
-	// jika menu ubah password dipilih, menu ubah password aktif
+	// Jika Menu Ubah Password dipilih
 	if ($_GET["module"]=="password") { ?>
 		<li class="active">
 			<a href="?module=password"><i class="fa fa-lock"></i> Ubah Password</a>
 		</li>
 	<?php
 	}
-	// jika tidak, menu ubah password tidak aktif
+	// Jika Menu Ubah Password tidak dipilih
 	else { ?>
 		<li>
 			<a href="?module=password"><i class="fa fa-lock"></i> Ubah Password</a>
@@ -499,4 +672,4 @@ if ($_SESSION['acces']=='Owner') { ?>
 	<!--sidebar menu end-->
 <?php
 }
-?>
+//============================================================================================================

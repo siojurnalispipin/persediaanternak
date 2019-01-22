@@ -1,4 +1,3 @@
-
 <section class="content-header">
   <h1>
     <i class="fa fa-folder-o icon-title"></i> Daftar Hewan
@@ -81,9 +80,6 @@
             $no = 1;
             // fungsi query untuk menampilkan data dari tabel obat
             require_once "config/database.php";
-      
-
-
             $query = $mysqli->query("SELECT * FROM hewan ORDER BY item_id ASC");
             //$data = $query->fetch_assoc();
            
