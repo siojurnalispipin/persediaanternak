@@ -27,7 +27,7 @@
     elseif ($_GET['alert'] == 1) {
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4  style='color:black;'>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
+              <h4 style='color:black;'>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
               <p style='color:black;'>Ternak sakit berhasil ditambahkan.</p>
             </div>";
     }
@@ -36,7 +36,7 @@
     elseif ($_GET['alert'] == 2) {
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4  style='color:black;'>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
+              <h4 style='color:black;'>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
               <p style='color:black;'>Data ternak sakit berhasil diubah.</p>
             </div>";
     }
@@ -52,9 +52,9 @@
     // jika alert = 4
     // tampilkan pesan Sukses "Gagal"
     elseif ($_GET['alert'] == 4) {
-      echo "<div class='alert alert-success alert-dismissable'>
+      echo "<div class='alert alert-danger alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4 style='color:red;'>Gagal!</h4>
+              <h4 style='color:red;'>  <i class='icon fa fa-close'></i> Gagal!</h4>
               <p style='color:black;'>Penambahan Ternak Sakit gagal.</p>
             </div>";
     }

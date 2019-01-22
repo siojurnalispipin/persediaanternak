@@ -1,9 +1,9 @@
 
 <section class="content-header">
   <h1>
-    <i class="fa fa-folder-o icon-title"></i> Barang Masuk
+    <i class="fa fa-folder-o icon-title"></i> Ternak Masuk
 
-    <a class="btn btn-primary btn-social pull-right" href="?module=form_barangmasuk&form=add" title="Tambah Data" data-toggle="tooltip">
+    <a class="btn btn-primary btn-social pull-right" href="?module=form_hewan&form=add3" title="Tambah Data" data-toggle="tooltip">
       <i class="fa fa-plus"></i> Tambah
     </a>
   </h1>
@@ -27,8 +27,8 @@
     elseif ($_GET['alert'] == 1) {
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              Data Barang Masuk baru berhasil disimpan.
+              <h4 style='color:black;'>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
+              <p style='color:black;'>Data Ternak Masuk baru berhasil disimpan.</p>
             </div>";
     }
     // jika alert = 2
@@ -36,8 +36,8 @@
     elseif ($_GET['alert'] == 2) {
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              Data Barang Masuk berhasil diubah.
+              <h4 style='color:black;'>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
+              <p style='color:black;'>Data Ternak Masuk berhasil diubah.</p>
             </div>";
     }
     // jika alert = 3
@@ -45,8 +45,8 @@
     elseif ($_GET['alert'] == 3) {
       echo "<div class='alert alert-success alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              Data Barang Masuk berhasil dihapus.
+              <h4 style='color:black;'>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
+              <p style='color:black;'>Data Ternak Masuk berhasil dihapus.</p>
             </div>";
     }
     ?>
@@ -98,12 +98,12 @@
               if($_SESSION['acces']=="Admin"){
                  ?>
 
-<!--Hiden tombl Edit                 
-                          <a data-toggle="tooltip" data-placement="top" title="Ubah" style="margin-right:5px" class="btn btn-primary btn-sm" href="?module=form_barangmasuk&form=edit&id=<?php// echo $data['transaction_id'];?>">
+
+                          <a data-toggle="tooltip" data-placement="top" title="Ubah" style="margin-right:5px" class="btn btn-primary btn-sm" href="?module=form_hewan&form=edit3&id=<?php echo $data['transaction_id'];?>">
                               <i style="color:#fff" class="glyphicon glyphicon-edit"></i>
                           </a>
- -->          
-                          <a data-toggle="tooltip" data-placement="top" title="Hapus" class="btn btn-danger btn-sm" href="modules/barangmasuk/proses.php?act=delete&id=<?php echo $data['transaction_id'];?>&amount=<?php echo $data['amount'];?>&item_id=<?php echo $data['item_id'];?>" onclick="return confirm('Anda yakin ingin menghapus pakan <?php echo $data['transaction_id']; ?> ?');">
+         
+                          <a data-toggle="tooltip" data-placement="top" title="Hapus" class="btn btn-danger btn-sm" href="modules/barangmasuk/proses.php?act=delete&id=<?php echo $data['transaction_id'];?>&amount=<?php echo $data['amount'];?>&item_id=<?php echo $data['item_id'];?>" onclick="return confirm('Anda yakin ingin menghapus ternakf <?php echo $data['transaction_id']; ?> ?');">
                               <i style="color:#fff" class="glyphicon glyphicon-trash"></i>
                           </a>
 

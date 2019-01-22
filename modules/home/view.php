@@ -1,4 +1,4 @@
-<?php require_once "auto/penjualan.php" ?>
+<?php require_once "auto/penjualan.php";?>
 
 <section class="content-header">
     <h1>
@@ -16,13 +16,11 @@
     <!-- Small boxes (Stat box) -->
 
     <div class="row">
-        <div class="small-box-footer">
+    <div class="small-box-footer">
             <div class="col-lg-3 col-xs-6" sytle="width:50%">
-                <div id="divjum" style="background-image:url('assets/img/sapi.jpg');background-size: cover; background-repeat: no-repeat; background-position: center; color:#fff;height:180px;"
+                <div id="divjum" style="background-image:url('assets/img/sapi_dark.jpg');background-size: cover; background-repeat: no-repeat; background-position: center; color:#fff;height:180px;"
                     class="small-box">
-
                     <?php  
-            // fungsi query untuk menampilkan data dari tabel obat
             $query = mysqli_query($mysqli, "SELECT amount as jumlah FROM hewan WHERE item_name LIKE 'Sapi'")
                                             or die('Ada kesalahan pada query tampil Data Obat: '.mysqli_error($mysqli));
 
@@ -33,7 +31,7 @@
                     <div class="inner">
                         <h1 style="text-align:center;">
                             Bibit Sapi
-                            <p><?php echo $data['jumlah']; ?></p>
+                            <h3 style='text-align:center'><?php echo $data['jumlah']; ?></h3>
                             </h3>
                     </div>
                     <div class="icon">
@@ -41,61 +39,10 @@
                 </div>
             </div>
         </div>
+
         <div class="small-box-footer">
             <div class="col-lg-3 col-xs-6" sytle="width:50%">
-                <div id="divjum" style="background-image:url('assets/img/ayam.jpg');background-size: cover; background-repeat: no-repeat; background-position: center; color:#fff;height:180px;"
-                    class="small-box">
-
-                    <?php  
-            // fungsi query untuk menampilkan data dari tabel obat
-            $query = mysqli_query($mysqli, "SELECT amount as jumlah FROM hewan WHERE item_name LIKE 'Ayam Potong'")
-                                            or die('Ada kesalahan pada query tampil Data Obat: '.mysqli_error($mysqli));
-
-            // tampilkan data
-            $data = mysqli_fetch_assoc($query);
-            ?>
-
-                    <div class="inner">
-                        <h1 style="text-align:center">
-                            Bibit Ayam
-                            <p><?php echo $data['jumlah'] ?></p>
-                            </h3>
-                    </div>
-                    <div class="icon">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="small-box-footer">
-            <div class="col-lg-3 col-xs-6" sytle="width:50%">
-                <div id="divjum" style="background-image:url('assets/img/pelet.jpg');background-size: cover; background-repeat: no-repeat; background-position: center; color:#fff;height:180px;"
-                    class="small-box">
-
-                    <?php  
-            // fungsi query untuk menampilkan data dari tabel obat
-            $query = mysqli_query($mysqli, "SELECT amount as jumlah FROM pakan WHERE item_name LIKE 'Pelet Ikan 1kg'")
-                                            or die('Ada kesalahan pada query tampil Data Obat: '.mysqli_error($mysqli));
-
-            // tampilkan data
-            $data = mysqli_fetch_assoc($query);
-            ?>
-                    
-
-                    <div class="inner">
-                        <h1 style="text-align:center">
-                            Pelet
-                            <p><?php echo $data['jumlah'] ?></p>
-                            </h3>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-file-text-o"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="small-box-footer">
-            <div class="col-lg-3 col-xs-6" sytle="width:50%">
-                <div id="divjum" style="background-image:url('assets/img/bibit.jpg');background-size: cover; background-repeat: no-repeat; background-position: center; color:Arsenic;height:180px;"
+                <div id="divjum" style="background-image:url('assets/img/ayam_small.jpg');background-size: cover; background-repeat: no-repeat; background-position: center; color:#fff;height:180px;"
                     class="small-box">
 
                     <?php  
@@ -110,11 +57,48 @@
                     <div class="inner">
                         <h1 style="text-align:center">
                             Bibit Ayam
-                            <p><?php echo $data['jumlah'] ?></p>
+                            <h3 style='text-align:center'><?php echo $data['jumlah'] ?></h3>
                             </h3>
                     </div>
                     <div class="icon">
-                        <i class="fa fa-file-text-o"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="small-box-footer">
+            <div class="col-lg-3 col-xs-6" sytle="width:50%">
+                <div id="divjum" style="background-image:url('assets/img/pelet2.jpg');background-size: cover; background-repeat: no-repeat; background-position: center; color:#fff;height:180px;"
+                    class="small-box">
+                    <?php  
+            // fungsi query untuk menampilkan data dari tabel obat
+            $query = mysqli_query($mysqli, "SELECT amount as jumlah FROM pakan WHERE item_name LIKE 'Pelet Ikan 1kg'")
+                                            or die('Ada kesalahan pada query tampil Data Obat: '.mysqli_error($mysqli));
+            // tampilkan data
+            $data = mysqli_fetch_assoc($query);
+            ?>
+                    <div class="inner">
+                        <h1 style="text-align:center">
+                            Pelet
+                            <h3 style='text-align:center'><?php echo $data['jumlah'] ?></h3>
+                            </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="small-box-footer">
+            <div class="col-lg-3 col-xs-6" sytle="width:50%">
+                <div id="divjum" style="background-image:url('assets/img/bebek_small.jpg');background-size: cover; background-repeat: no-repeat; background-position: center; color:#fff;height:180px;"
+                    class="small-box">
+                    <?php  
+            $query = mysqli_query($mysqli, "SELECT amount as jumlah FROM hewan WHERE item_name LIKE 'Bebek Anakan'")
+                                            or die('Ada kesalahan pada query tampil Data Obat: '.mysqli_error($mysqli));
+            $data = mysqli_fetch_assoc($query);
+            ?>
+                    <div class="inner">
+                        <h1 style="text-align:center">
+                            Bibit Bebek
+                            <h3 style='text-align:center'><?php echo $data['jumlah'] ?></h3>
+                            </h3>
                     </div>
                 </div>
             </div>
@@ -404,15 +388,15 @@
 
     <!--=============================================================================================================-->
     <div class="row">
-        <div class="col-lg-12 col-xs-12" style="width:100%">
+        <div class="col-lg-12 col-xs-12" style="width:10%"></div>
+        <div class="col-lg-12 col-xs-12" style="width:80%">
             <div id="chart-container">
                 <div style="padding:5px" class="small-box">
-
                     <canvas id="graphPenjualan"></canvas>
                 </div>
             </div>
         </div>
-
+        <div class="col-lg-12 col-xs-12" style="width:10%"></div>
     </div>
     <!--/.row-->
 

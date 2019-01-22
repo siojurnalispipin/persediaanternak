@@ -1,9 +1,6 @@
 <?php
 session_start();
 
-  
-    
-
 // Panggil koneksi database.php untuk koneksi database
 require_once "../../config/database.php";
 
@@ -28,13 +25,12 @@ else {
             $query = mysqli_query($mysqli, "SELECT * FROM hewan WHERE item_name ='$item_name' AND type='$type'")
                                             or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));    
             if($query->num_rows > 0){
-                echo "<script type='text/javascript'>alert('Nama dan jenis hewan yang sama sudah terdaftar !');</script>";
-                header("location: ../../main.php?module=form_hewan&alert=1");
+                header("location: ../../main.php?module=form_hewan&form=add&alert=1");
             }
             else{
                 // perintah query untuk menyimpan data ke tabel obat
                 $query = mysqli_query($mysqli, "INSERT INTO hewan(item_id,item_name,amount,type,price,item_image) 
-                                                VALUES('$item_id','$item_name','$amount','$type','$price','$item_image')")
+                                                VALUES($item_id,'$item_name',$amount,'$type','$price','$item_image')")
                                                 or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));    
 
                 // cek query
@@ -46,7 +42,7 @@ else {
         }   
     }
 
-    elseif ($_GET['act']=='insertsc') {
+    elseif ($_GET['act']=='insert2') {
         if (isset($_POST['simpan'])) {
             // ambil data hasil submit dari form
             $sick_id    = trim($_POST['sick_id']);
@@ -56,10 +52,16 @@ else {
 
             $query = $mysqli->query("SELECT * from hewan where item_name='$item_name'");
             $data = $query->fetch_assoc();
-
+            $item_id = $data['item_id'];
+            $jlhawal = $data['amount'];
+            $jlhakhir = $jlhawal -$amount;
             //Cek apakah jumlah hewan sakit lebih kecil dari stok
-            if((int)$data['amount'] >= $amount){
-                //buat kde transaksi
+            if($jlhawal >= $amount){
+              // Query insert Sakit                
+              $query = mysqli_query($mysqli, "INSERT INTO sakit(sick_id,item_name,amount) 
+              VALUES('$sick_id','$item_name',$amount)")
+              or die('Ada kesalahan pada query insert sakit : '.mysqli_error($mysqli));
+              //buat kode transaksi
               $query = $mysqli->query("SELECT transaction_id from barang_keluar order by transaction_id desc limit 1");
               $data = $query->fetch_assoc();
               $lastid = $data['transaction_id'];
@@ -71,34 +73,18 @@ else {
                   $num = 10101;
               }
               $transaction_id = "K$num";
-                
-                // perintah query untuk menyimpan data ke tabel obat
-                
-                $query = mysqli_query($mysqli, "INSERT INTO sakit(sick_id,item_name,amount) 
-                                                VALUES('$sick_id','$item_name','$amount')")
-                                                or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));
-                $amount2 = (int)$data['amount'] - $amount; 
-                $item_id = $data['item_id'];
-                $type = $data['type'];
-                $price = $data['price'];
-                $item_image = $data['item_image'];
-                $tracked_by = $_SESSION['acces'];
-                $query = mysqli_query($mysqli, "INSERT INTO barang_keluar(transaction_id,item_id,description,amount,tracked_by,misc)
-                                                VALUES('$transaction_id','$item_id','$item_name','$amount','$tracked_by','Sakit')")
-                                                or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));    
+              $tracked_by = $_SESSION['acces'];
+              $misc = "Sakit";
 
-                $query = mysqli_query($mysqli, "UPDATE hewan SET  item_id       = '$item_id',
-                                                                    item_name      = '$item_name',
-                                                                    amount      = '$amount2',
-                                                                    type          = '$type',
-                                                                    price = '$price',
-                                                                    item_image = '$item_image'
-                                                              WHERE item_name      = '$item_name'")
-                                                or die('Ada kesalahan pada query update : '.mysqli_error($mysqli));
-
-                // cek query
+              // Query Hewan Keluar ++
+              $query = mysqli_query($mysqli, "INSERT INTO barang_keluar(transaction_id,item_id,description,amount,tracked_by,misc)
+                                            VALUES('$transaction_id',$item_id,'$item_name',$amount,'$tracked_by','$misc')")
+                                            or die('Ada kesalahan pada query insert hewan keluar hasu: '.mysqli_error($mysqli));   
+              
+              //Query Update Jumlah Hewan
+              $query = mysqli_query($mysqli, "UPDATE hewan SET amount = $jlhakhir WHERE item_name = '$item_name'")
+                                                or die('Ada kesalahan pada query Update Jumlah Hewan  : '.mysqli_error($mysqli));
                 if ($query) {
-                    // jika berhasil tampilkan pesan berhasil simpan data
                     header("location: ../../main.php?module=hewansakit&alert=1");
                 }   
             }
@@ -134,13 +120,13 @@ else {
                     $updated_user = $_SESSION['user_id'];
 
                     // perintah query untuk mengubah data pada tabel obat
-                    $query = mysqli_query($mysqli, "UPDATE hewan SET  item_id       = '$item_id',
+                    $query = mysqli_query($mysqli, "UPDATE hewan SET  item_id       = $item_id,
                                                                         item_name      = '$item_name',
-                                                                        amount      = '$amount',
+                                                                        amount      = $amount,
                                                                         type          = '$type',
                                                                         price = '$price',
                                                                         item_image = '$item_image'
-                                                                WHERE item_id      = '$item_id'")
+                                                                WHERE item_id      = $item_id")
                                                     or die('Ada kesalahan pada query update : '.mysqli_error($mysqli));
 
                     // cek query
@@ -158,7 +144,7 @@ else {
             $item_id = $_GET['id'];
     
             // perintah query untuk menghapus data pada tabel obat
-            $query = mysqli_query($mysqli, "DELETE FROM hewan WHERE item_id='$item_id'")
+            $query = mysqli_query($mysqli, "DELETE FROM hewan WHERE item_id=$item_id")
                                             or die('Ada kesalahan pada query delete : '.mysqli_error($mysqli));
 
             // cek hasil query
@@ -224,14 +210,15 @@ else {
             $query = $mysqli->query("SELECT * FROM hewan where item_id = $item_id");
             $data = $query->fetch_assoc();
             $item_name  = $data['item_name']; 
+            $jlhawal =$data['amount'];
             // Cek Jumlah Stok Sebelum Keluarkan Barang
-            if((int)$data['amount'] >= $amount){
+            if($jlhawal >= $amount){
                 $enough=true;
-                $amount2 = (int)$data['amount'] - $amount; 
-                $query = mysqli_query($mysqli, "UPDATE hewan SET amount = $amount2 WHERE item_id = $item_id")
+                $jlhakhir = $jlhawal - $amount; 
+                $query = mysqli_query($mysqli, "UPDATE hewan SET amount = $jlhakhir WHERE item_id = $item_id")
                             or die('Ada kesalahan pada query update : '.mysqli_error($mysqli));
                             $created_user = $_SESSION['user_id'];
-                // perintah query untuk menyimpan data ke tabel obat
+                // Query Hewan Keluar
                 $query = mysqli_query($mysqli, "INSERT INTO barang_keluar(transaction_id,item_id,description,amount,tracked_by,misc)
                         VALUES('$transaction_id',$item_id,'$item_name',$amount,'$tracked_by','$misc')")
                         or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));    
@@ -239,6 +226,9 @@ else {
                 if ($query) {
                     header("location: ../../main.php?module=hewankeluar&alert=1");
                 }   
+            }
+            else{
+                header("location: ../../main.php?module=form_hewan&form=add4&alert=4");
             }
         }
     }
@@ -252,23 +242,25 @@ else {
                 // ambil data hasil submit dari form
                 $query          = mysqli_query($mysqli, "SELECT * FROM barang_masuk WHERE transaction_id ='$transaction_id'");
                 $data           = $query->fetch_assoc();
-                $amountAwal = $data['amount'];
+                $jumlahawal = $data['amount'];
+                $item_name = $data['description'];
                 // ambil item_id dari query
                 $query          = mysqli_query($mysqli, "SELECT * FROM hewan WHERE item_name ='$item_name'");
                 $data           = $query->fetch_assoc();
                 $item_id        = $data['item_id'];
                 // Hitung Kembalian Jumlah yang diubah
                 
-                if($amountAwal < $amount){
-                    $tambah = $amount-$amountAwal;
+                if($jumlahawal < $amount){
+                    $tambah = $amount-$jumlahawal;
                     $query = mysqli_query($mysqli, "UPDATE hewan set amount = amount + $tambah WHERE item_id = $item_id ");
                 }
-                elseif($amountAwal > $amount){
-                    $kurangi = $amountAwal-$amount;
+                elseif($jumlahawal > $amount){
+                    $kurangi = $jumlahawal-$amount;
                     $query = mysqli_query($mysqli, "SELECT * FROM hewan WHERE item_id =$item_id");
                     $data = $query->fetch_assoc();
-                    if($data['amount'] >= $kurangi){
-                        $query = mysqli_query($mysqli, "UPDATE hewan set amount = amount - $kurangi WHERE item_id = $item_id ");
+                    $jlhakhir = $data['amount'] -$kurangi;
+                    if($jlhakhir >= $kurangi){
+                        $query = mysqli_query($mysqli, "UPDATE hewan set amount = $jlhakhir WHERE item_id = $item_id ");
 
                     }
                     else{
@@ -288,24 +280,25 @@ else {
         if (isset($_POST['simpan'])) {
             if (isset($_POST['transaction_id'])) {
                 // ambil data hasil submit dari form
-                $query          = mysqli_query($mysqli, "SELECT * FROM barang_keluar WHERE transaction_id ='$transaction_id'");
-                $data           = $query->fetch_assoc();
                 $transaction_id = $_POST['transaction_id'];
                 $description    = $_POST['description'];
                 $amount         = $_POST['amount'];
-                $amountAwal = $data['amount'];
+                $query          = mysqli_query($mysqli, "SELECT * FROM barang_keluar WHERE transaction_id ='$transaction_id'");
+                $data           = $query->fetch_assoc();
+                $jumlahawal = $data['amount'];
+                $item_name = $data['description'];
                 // ambil item_id dari query
                 $query          = mysqli_query($mysqli, "SELECT * FROM hewan WHERE item_name ='$item_name'");
                 $data           = $query->fetch_assoc();
                 $item_id        = $data['item_id'];
                 // Hitung Kembalian Jumlah yang diubah
                 
-                if($amountAwal > $amount){
-                    $kembali = $amountAwal - $amount;
+                if($jumlahawal > $amount){
+                    $kembali = $jumlahawal - $amount;
                     $query = mysqli_query($mysqli, "UPDATE hewan set amount = amount + $kembali WHERE item_id = $item_id ");
                 }
-                elseif($amountAwal < $amount){
-                    $kurangi = $amount - $amountAwal;
+                elseif($jumlahawal < $amount){
+                    $kurangi = $amount - $jumlahawal;
                     $query = mysqli_query($mysqli, "SELECT * FROM hewan WHERE item_id =$item_id");
                     $data = $query->fetch_assoc();
                     if($data['amount'] >= $kurangi){
@@ -316,7 +309,7 @@ else {
                         header("location: ../../main.php?module=hewankeluar&alert=5");
                     }
                 }
-                $query = mysqli_query($mysqli, "UPDATE barang_keluar set item_id = $item_id, item_name='$item_name', amount=$amount where item_name='$item_name'")
+                $query = mysqli_query($mysqli, "UPDATE barang_keluar set item_id = $item_id, description='$item_name', amount=$amount where description='$item_name'")
                                             or die('Ada kesalahan pada query insert : '.mysqli_error($mysqli));    
                 if($query){
                     header("location: ../../main.php?module=hewankeluar&alert=1");
@@ -335,7 +328,8 @@ else {
             $query = mysqli_query($mysqli, "SELECT * from hewan WHERE item_id =$item_id");
             $amount = $data['amount'];
             if($amount >= $kurangi){
-                $query = mysqli_query($mysqli, "UPDATE hewan set amount = amount -$kurangi WHERE item_id =$item_id");
+                $jlhakhir = $amount - $kurangi;
+                $query = mysqli_query($mysqli, "UPDATE hewan set amount = $jlhakhir WHERE item_id =$item_id");
                 $query = mysqli_query($mysqli, "DELETE FROM barang_masuk WHERE transaction_id='$id'")
                                             or die('Ada kesalahan pada query delete : '.mysqli_error($mysqli));
                 if ($query) {

@@ -50,18 +50,18 @@
             </div>";
     }
     elseif ($_GET['alert'] == 4) {
-      echo "<div class='alert alert-success alert-dismissable'>
+      echo "<div class='alert alert-danger alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4 style='color:red;'>Gagal!</h4>
+              <h4 style='color:red;'>  <i class='icon fa fa-close'></i> Gagal!</h4>
               <p style='color:black;'>Data Pakan Gagal dimasukkan.</p>
             </div>";
       $msg = "Pakan dan jenis yang sama telah terdaftar.";
       echo "<script type='text/javascript'>alert('$msg');</script>";
     }
     elseif ($_GET['alert'] == 5) {
-      echo "<div class='alert alert-success alert-dismissable'>
+      echo "<div class='alert alert-danger alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4 style='color:red;'>Gagal!</h4>
+              <h4 style='color:red;'>  <i class='icon fa fa-close'></i> Gagal!</h4>
               <p style='color:black;'>Data Pakan Gagal diubah.</p>
             </div>";
       $msg = "Pakan dan jenis yang sama telah terdaftar.";

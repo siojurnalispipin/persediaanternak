@@ -239,31 +239,8 @@ elseif ($_GET['form']=='add2') { ?>
 }
 
 //Form Tambah Pakan masuk
-elseif ($_GET['form']=='add3') { ?> 
-  <!-- tampilan form add data -->
-	<!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1>
-      <i class="fa fa-edit icon-title"></i>Tambah Pakan Masuk
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="?module=home"><i class="fa fa-home"></i> Beranda </a></li>
-      <li><a href="?module=pakangmasuk"> Pakan Masuk </a></li>
-      <li class="active"> Tambah </li>
-    </ol>
-  </section>
-
-  <!-- Main content -->
-  <section class="content">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="box box-primary">
-          <!-- form start -->
-          <form role="form" class="form-horizontal" action="modules/pakan/proses.php?act=insert3" method="POST">
-            <div class="box-body">
-              <?php  
-              // fungsi untuk membuat id transaksi
-              require_once "config/database.php";
+elseif ($_GET['form']=='add3') { 
+  require_once "config/database.php";
               $user_id = $_SESSION['user_id'];
               $query = $mysqli->query("SELECT transaction_id from barang_masuk order by transaction_id desc limit 1");
               $query2 = $mysqli->query("SELECT * from pakan");
@@ -277,10 +254,28 @@ elseif ($_GET['form']=='add3') { ?>
               } else {
                   $num = 10101;
               }
-              $kode = "M$num";
-             
-              ?>
+              $kode = "M$num";?> 
+  <!-- tampilan form add data -->
+	<!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      <i class="fa fa-edit icon-title"></i>Tambah Pakan Masuk
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="?module=home"><i class="fa fa-home"></i> Beranda </a></li>
+      <li><a href="?module=pakanmasuk"> Pakan Masuk </a></li>
+      <li class="active"> Tambah </li>
+    </ol>
+  </section>
 
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <!-- form start -->
+          <form role="form" class="form-horizontal" action="modules/pakan/proses.php?act=insert3" method="POST">
+            <div class="box-body">
               <div class="form-group">
                 <label class="col-sm-2 control-label">Kode Transaksi</label>
                 <div class="col-sm-5">
@@ -352,7 +347,22 @@ elseif ($_GET['form']=='add3') { ?>
 }
 
 //Form Tambah Pakan Keluar
-elseif ($_GET['form']=='add4') { ?> 
+elseif ($_GET['form']=='add4') { 
+  require_once "config/database.php";
+              $user_id = $_SESSION['user_id'];
+              $query = $mysqli->query("SELECT transaction_id from barang_keluar order by transaction_id desc limit 1");
+              $query2 = $mysqli->query("SELECT * from pakan");
+              $data = $query->fetch_assoc();
+              $lastid = $data['transaction_id'];
+              $lastid = substr($lastid,1,5);
+              $count = $query->num_rows;
+
+              if ($count > 0) {
+                  $num = $lastid+1;
+              } else {
+                  $num = 10101;
+              }
+              $kode = "K$num";?> 
   <section class="content-header">
     <h1>
       <i class="fa fa-edit icon-title"></i>Tambah Pakan Keluar
@@ -372,26 +382,6 @@ elseif ($_GET['form']=='add4') { ?>
           <!-- form start -->
           <form role="form" class="form-horizontal" action="modules/pakan/proses.php?act=insert4" method="POST">
             <div class="box-body">
-              <?php  
-              // fungsi untuk membuat id transaksi
-              require_once "config/database.php";
-              $user_id = $_SESSION['user_id'];
-              $query = $mysqli->query("SELECT transaction_id from barang_masuk order by transaction_id desc limit 1");
-              $query2 = $mysqli->query("SELECT * from pakan");
-              $data = $query->fetch_assoc();
-              $lastid = $data['transaction_id'];
-              $lastid = substr($lastid,1,5);
-              $count = $query->num_rows;
-
-              if ($count > 0) {
-                  $num = $lastid+1;
-              } else {
-                  $num = 10101;
-              }
-              $kode = "M$num";
-             
-              ?>
-
               <div class="form-group">
                 <label class="col-sm-2 control-label">Kode Transaksi</label>
                 <div class="col-sm-5">
@@ -578,9 +568,7 @@ elseif ($_GET['form']=='edit') {
   </section><!-- /.content -->
 <?php
 }
-
-
-
+// Edit Pakan Masuk
 elseif ($_GET['form']=='edit3') { 
   if (isset($_GET['id'])) {
       // fungsi query untuk menampilkan data dari tabel obat
@@ -593,6 +581,8 @@ elseif ($_GET['form']=='edit3') {
       $amount       = $data['amount'];
       $tracked_by   = $data['tracked_by'];
       $misc         = $data['misc'];
+      $user_id = $_SESSION['user_id'];           
+      $query2 = $mysqli->query("SELECT * from pakan");
     }
 ?>
   <!-- tampilan form edit data -->
@@ -616,13 +606,6 @@ elseif ($_GET['form']=='edit3') {
           <!-- form start -->
           <form role="form" class="form-horizontal" action="modules/pakan/proses.php?act=update3" method="POST">
             <div class="box-body">
-              <?php  
-              // fungsi untuk membuat id transaksi
-              require_once "config/database.php";
-              $user_id = $_SESSION['user_id'];              
-              $query2 = $mysqli->query("SELECT * from pakan");
-              ?>
-
               <div class="form-group">
                 <label class="col-sm-2 control-label">Kode Transaksi</label>
                 <div class="col-sm-5">
@@ -634,10 +617,13 @@ elseif ($_GET['form']=='edit3') {
                 <label class="col-sm-2 control-label">Nama Pakan</label>
                 <div class="col-sm-5">
                   <select class="chosen-select" name="description" value="<?php echo $description; ?>" data-placeholder="-- Pilih --" autocomplete="off" required>
-                    <?php          
+                    <?php
+                    echo "<option value='$description'>$description</option>";
                     while($datapakan = $query2->fetch_assoc()){
                       $item = $datapakan['item_name'];
-                      echo "<option value='$item'>$item</option>";}
+                      if($item != $description){
+                        echo "<option value='$item'>$item</option>";}
+                    }
                     ?>
                   </select>
                 </div>
@@ -744,7 +730,9 @@ elseif ($_GET['form']=='edit4') {
                     <?php          
                     while($datapakan = $query2->fetch_assoc()){
                       $item = $datapakan['item_name'];
-                      echo "<option value='$item'>$item</option>";}
+                      if($item != $description){
+                        echo "<option value='$item'>$item</option>";}
+                    }
                     ?>
                   </select>
                 </div>

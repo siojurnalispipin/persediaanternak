@@ -60,7 +60,7 @@ if ($_SESSION['acces']=='Admin') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li class="active"><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
-        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kedaluarsa </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kadaluarsa </a></li>
 						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
 						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan KeLuar </a></li>
       		</ul>
@@ -90,7 +90,7 @@ if ($_SESSION['acces']=='Admin') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
-        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kedaluarsa </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kadaluarsa </a></li>
 						<li class="active"><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
 						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan KeLuar </a></li>
       		</ul>
@@ -105,7 +105,7 @@ if ($_SESSION['acces']=='Admin') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
-        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kedaluarsa </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kadaluarsa </a></li>
 						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
 						<li  class="active"><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan KeLuar </a></li>
       		</ul>
@@ -120,7 +120,7 @@ if ($_SESSION['acces']=='Admin') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
-        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kedaluarsa </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kadaluarsa </a></li>
 						<li><a href="?module=pakanmasuk"><i class="fa fa-circle-o"></i> Pakan Masuk </a></li>
 						<li><a href="?module=pakankeluar"><i class="fa fa-circle-o"></i> Pakan KeLuar </a></li>
       		</ul>
@@ -301,7 +301,7 @@ elseif ($_SESSION['acces']=='Head Officer') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li class="active"><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
-        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i>Pakan Kedaluarsa </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i>Pakan Kadaluarsa </a></li>
       		</ul>
     	</li>
     <?php
@@ -314,7 +314,7 @@ elseif ($_SESSION['acces']=='Head Officer') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
-        		<li class="active"><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kedaluarsa </a></li>
+        		<li class="active"><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kadaluarsa </a></li>
       		</ul>
     	</li>
     <?php
@@ -327,7 +327,7 @@ elseif ($_SESSION['acces']=='Head Officer') { ?>
           	</a>
       		<ul class="treeview-menu">
         		<li><a href="?module=daftarpakan"><i class="fa fa-circle-o"></i> Daftar Pakan </a></li>
-        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kedaluarsa </a></li>
+        		<li><a href="?module=pakanrusak"><i class="fa fa-circle-o"></i> Pakan Kadaluarsa </a></li>
       		</ul>
     	</li>
     <?php

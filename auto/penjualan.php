@@ -1,17 +1,21 @@
-<?php
-require_once "config/database.php";
-$data = array();
-//foreach ($result as $row) {
-//	$data[] = $row;
-//}
-$bln = 6;
+<?php require_once "config/database.php";
+$query = $mysqli->query("SELECT id FROM penjualan ORDER BY id DESC LIMIT 1");
+
+if($query->num_rows == 0){
+    $max = 0;
+}
+else{
+    $data = $query->fetch_assoc();
+    $max = $data['id'];
+}
+$bln = 7;
 $thn=2018;
 $thn2 =(int) date("Y");
 $bln2 =(int) date("m");
-$n = ($bln2-$bln) + (($thn2-$thn)*12);
+$n = ($bln2 + 1 + (($thn2-$thn)*12)) - $bln  ;
 $bulan = array("Januari", "Februari", "Maret", "April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
 
-for($i=0, $bln=6;$i<$n;$i++,$bln++){
+for($i=1;$i<=$n;$i++,$bln++){
     if($bln==13){
         $thn++;$bln=1;
     }
@@ -29,16 +33,21 @@ for($i=0, $bln=6;$i<$n;$i++,$bln++){
         $th2=$thn+1;
     }
     else $th2 = $thn;
-    //SELECT SUM(amount) FROM barang_keluar WHERE misc='Terjual' AND transaction_date BETWEEN '2018-07-01' AND '2018-07-02'
     $query = $mysqli->query("SELECT SUM(amount) as sum FROM barang_keluar WHERE misc='Terjual' AND transaction_date BETWEEN '$thn-$bl-01' AND '$th2-$bl2-01'");
     $tmp = $query->fetch_assoc();
     $sum = $tmp['sum'];
-    $t1=$bln;
-    $t2 = $t1 % 12;
+    $t1=$bln-1;
+    $t2 = ($t1 % 12);
     $month = $bulan[$t2];
-    $arr = array($month,(int)$sum);
-    array_push($data, $arr);
-    $query = $mysqli->query("UPDATE `penjualan` SET `id`=$i,`month_name`='$month',`amount`=$sum WHERE 'id'= $i");
+    $query2 = $mysqli->query("SELECT amount FROM penjualan WHERE id= $i");
+    $data = $query2->fetch_assoc();
+    $jlhawal= $data['amount'];
+    if($i > $max){
+        $query = $mysqli->query("INSERT INTO penjualan (`id`,`month_name`,`amount`) VALUES($i,'$month',$sum)");
+    }
+    else{
+        $query = $mysqli->query("UPDATE penjualan SET amount=$sum WHERE id= $i");
+    }
 }
 //echo json_encode($data);
 ?>

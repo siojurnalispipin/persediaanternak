@@ -50,9 +50,9 @@
             </div>";
     }
     elseif ($_GET['alert'] == 4) {
-      echo "<div class='alert alert-success alert-dismissable'>
+      echo "<div class='alert alert-danger alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4 style='color:red;'>Gagal!</h4>
+              <h4 style='color:red;'>  <i class='icon fa fa-close'> Gagal!</h4> 
               <p style='color:black;'>Data Ternak sudah ada.</p>
             </div>";
     }

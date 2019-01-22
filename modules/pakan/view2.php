@@ -54,7 +54,7 @@
     elseif ($_GET['alert'] == 4) {
       echo "<div class='alert alert-danger alert-dismissable'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4 style='color:red;'><i class='icon fa fa-close'></i> Gagal!</h4>
+              <h4 style='color:red;'>  <i class='icon fa fa-close'></i> Gagal!</h4>
               <p style='color:black;'>Penambahan Pakan Kadaluarsa gagal.</p>
             </div>";
     }

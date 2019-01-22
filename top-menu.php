@@ -20,36 +20,76 @@ $query = $mysqli->query("SELECT * FROM anggota WHERE user_id = '$user_id'");
 $data = $query->fetch_assoc();
 ?>
 
-
+<!--Menu Pakan -->
 <li class="dropdown user user-menu">
   <a href="#" class="dropdown-toggle fa fa-angle-down" data-toggle="dropdown">
-    Persediaan
+    Pakan
   </a>
   <ul class="dropdown-menu">
  
     <li >
-    <a href="?module=daftarpakan">Pakan
+    <a href="?module=daftarpakan">Stok Pakan
   </a>
     </li>
-    
     <li>
-    <a href="?module=daftarhewan">Ternak
+    <a href="?module=pakanrusak">Pakan Kadaluarsa
+  </a>
+    </li>
+    <li>
+    <a href="?module=pakanmasuk">Pakan Masuk
+  </a>
+    </li>
+    <li>
+    <a href="?module=pakankeluar">Pakan Keluar
   </a>
     </li>
   </ul>
 </li>
 
-
+<!--Menu Ternak -->
 <li class="dropdown user user-menu">
-  <a href="?module=barangmasuk">Data Pakan & Ternak Masuk
+  <a href="#" class="dropdown-toggle fa fa-angle-down" data-toggle="dropdown">
+    Ternak
   </a>
+  <ul class="dropdown-menu">
+ 
+    <li >
+    <a href="?module=daftarhewan">Stok Ternak
+  </a>
+    </li>
+    <li>
+    <a href="?module=hewansakit">Ternak Sakit
+  </a>
+    </li>
+    <li>
+    <a href="?module=hewanmasuk">Ternak Masuk
+  </a>
+    </li>
+    <li>
+    <a href="?module=hewankeluar">Ternak Keluar
+  </a>
+    </li>
+  </ul>
 </li>
 
+<!--Menu Keluar Masuk -->
 <li class="dropdown user user-menu">
-  <a href="?module=barangkeluar">Data Pakan & Ternak Keluar
+  <a href="#" class="dropdown-toggle fa fa-angle-down" data-toggle="dropdown">
+    Gabungan
   </a>
+  <ul class="dropdown-menu">
+    <li >
+    <a href="?module=barangmasuk">Data Pakan & Ternak Masuk
+  </a>
+    </li>
+    <li>
+    <a href="?module=barangkeluar">Data Pakan & Ternak Keluar
+  </a>
+    </li>
+  </ul>
 </li>
 
+<!--Menu Laporan -->
 <li class="dropdown user user-menu">
   <a href="#" class="dropdown-toggle fa fa-angle-down" data-toggle="dropdown">
     Laporan
@@ -57,26 +97,32 @@ $data = $query->fetch_assoc();
   <ul class="dropdown-menu">
  
     <li >
-    <a href="?module=pakanrusak">Laporan Pakan Kedaluarsa
+    <a href="?module=laporanpakanmasuk">Laporan Pakan Masuk
   </a>
     </li>
-    
-
     <li>
-    <a href="?module=hewansakit">Laporan Ternak Sakit
+    <a href="?module=Laporan Pakan Keluar">Laporan Pakan Keluar
+  </a>
+    </li>
+    <li>
+    <a href="?module=laporanhewankeluar">Laporan Ternak Keluar
+  </a>
+    </li>
+    <li>
+    <a href="?module=laporanhewansakit">Laporan Ternak Sakit
   </a>
     </li>
   </ul>
 </li>
 
 
-
+<!-- Pengguna-->
 <li class="dropdown user user-menu">
   <a href="?module=user">Pengguna
   </a>
 </li>
 
-
+<!-- User -->
 <li class="dropdown user user-menu">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
   <!-- User image -->
