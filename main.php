@@ -162,7 +162,7 @@ session_start();
       </div><!-- /.content-wrapper -->
 
       <footer class="main-footer">
-        <strong>Copyright &copy; 2018 - <a href="#">www.herukure.com</a>.</strong>
+        <strong>Copyright &copy; 2018 - <a href="#">www.projectecekecek.com</a>.</strong>
       </footer>
     </div><!-- ./wrapper -->
 
