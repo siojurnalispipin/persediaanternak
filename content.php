@@ -120,6 +120,10 @@ else {
 	// 
 
 	// ----------------------
+	elseif ($_GET['module'] == 'testing') {
+		include "modules/testing/view.php";
+	}
+
 
 	// jika halaman konten yang dipilih obat masuk, panggil file view obat masuk
 	elseif ($_GET['module'] == 'obat_masuk') {

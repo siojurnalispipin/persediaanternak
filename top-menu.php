@@ -51,6 +51,11 @@ echo "<li class='dropdown user user-menu' >
    ?>
 
 
+<!-- Testing-->
+<li class="dropdown user user-menu">
+  <a href="?module=testing">Testing
+  </a>
+</li>
 
 <!--Menu Pakan -->
 <li class="dropdown user user-menu">

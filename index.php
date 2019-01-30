@@ -48,7 +48,7 @@
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Kontak</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="http://localhost:8080/cvlaia/login.php">Masuk</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="http://localhost/cvlaia/login.php">Masuk</a>
             </li>
           </ul>
         </div>
@@ -72,7 +72,7 @@
         <hr class="star-dark mb-5">
         <div class="row">
           <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="http://localhost:8080/cvlaia/images/hewan/sapi.png">
+            <a class="portfolio-item d-block mx-auto" href="http://localhost/cvlaia/images/hewan/sapi.png">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                 <i class="fas fa-book fa-2x"></i>
@@ -84,7 +84,7 @@
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="http://localhost:8080/cvlaia/images/hewan/ayam_big.png">
+            <a class="portfolio-item d-block mx-auto" href="http://localhost/cvlaia/images/hewan/ayam_big.png">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                 <i class="fas fa-book fa-2x"></i>
@@ -95,7 +95,7 @@
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="http://localhost:8080/cvlaia/images/hewan/bebek_small.png">
+            <a class="portfolio-item d-block mx-auto" href="http://localhost/cvlaia/images/hewan/bebek_small.png">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                 <i class="fas fa-book fa-2x"></i>
@@ -106,7 +106,7 @@
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="http://localhost:8080/cvlaia/images/item/pelet.png">
+            <a class="portfolio-item d-block mx-auto" href="http://localhost/cvlaia/images/item/pelet.png">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                 <i class="fas fa-book fa-2x"></i>
@@ -117,7 +117,7 @@
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="http://localhost:8080/cvlaia/images/item/comfeed.png">
+            <a class="portfolio-item d-block mx-auto" href="http://localhost/cvlaia/images/item/comfeed.png">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                 <i class="fas fa-book fa-2x"></i>
@@ -128,7 +128,7 @@
             </a>
           </div>
           <div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="http://localhost:8080/cvlaia/images/hewan/ayam_small.png">
+            <a class="portfolio-item d-block mx-auto" href="http://localhost/cvlaia/images/hewan/ayam_small.png">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
                 <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
                   <i class="fas fa-book fa-2x"></i>
